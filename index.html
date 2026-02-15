@@ -995,10 +995,85 @@
             ticker.innerHTML = tickerHTML + tickerHTML;
         }
 
-        // Initialize on page load
+// Fetch real crypto prices from CoinGecko (FREE - no API key!)
+        async function fetchRealPrices() {
+            try {
+                const response = await fetch(
+                    'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,cardano,solana,ripple,dogecoin&vs_currencies=usd&include_24hr_change=true'
+                );
+                const data = await response.json();
+                
+                return [
+                    {
+                        symbol: 'BTC/USD',
+                        price: data.bitcoin.usd.toLocaleString(),
+                        change: data.bitcoin.usd_24h_change.toFixed(2) + '%',
+                        isUp: data.bitcoin.usd_24h_change > 0
+                    },
+                    {
+                        symbol: 'ETH/USD',
+                        price: data.ethereum.usd.toLocaleString(),
+                        change: data.ethereum.usd_24h_change.toFixed(2) + '%',
+                        isUp: data.ethereum.usd_24h_change > 0
+                    },
+                    {
+                        symbol: 'ADA/USD',
+                        price: data.cardano.usd.toFixed(4),
+                        change: data.cardano.usd_24h_change.toFixed(2) + '%',
+                        isUp: data.cardano.usd_24h_change > 0
+                    },
+                    {
+                        symbol: 'SOL/USD',
+                        price: data.solana.usd.toFixed(2),
+                        change: data.solana.usd_24h_change.toFixed(2) + '%',
+                        isUp: data.solana.usd_24h_change > 0
+                    },
+                    {
+                        symbol: 'XRP/USD',
+                        price: data.ripple.usd.toFixed(4),
+                        change: data.ripple.usd_24h_change.toFixed(2) + '%',
+                        isUp: data.ripple.usd_24h_change > 0
+                    },
+                    {
+                        symbol: 'DOGE/USD',
+                        price: data.dogecoin.usd.toFixed(4),
+                        change: data.dogecoin.usd_24h_change.toFixed(2) + '%',
+                        isUp: data.dogecoin.usd_24h_change > 0
+                    }
+                ];
+            } catch (error) {
+                console.error('Error fetching prices:', error);
+                return [];
+            }
+        }
+
+        // Update populateTicker to use real data
+        async function populateTicker() {
+            const ticker = document.getElementById('marketTicker');
+            const data = await fetchRealPrices();
+            
+            if (data.length === 0) {
+                ticker.innerHTML = '<div style="color: #ff3366; text-align: center;">Unable to load market data</div>';
+                return;
+            }
+            
+            const tickerHTML = data.map(item => `
+                <div class="ticker-item">
+                    <span class="ticker-symbol">${item.symbol}</span>
+                    <span class="ticker-price">$${item.price}</span>
+                    <span class="ticker-change ${item.isUp ? 'ticker-up' : 'ticker-down'}">
+                        ${item.change}
+                    </span>
+                </div>
+            `).join('');
+            
+            ticker.innerHTML = tickerHTML + tickerHTML;
+        }
+
+        // Initialize on page load and refresh every 60 seconds
         window.addEventListener('load', () => {
             populateTicker();
-            // Chart removed - add back if needed later
+            setInterval(populateTicker, 60000); // Refresh every 60 seconds
         });
     </script>
 </body>
