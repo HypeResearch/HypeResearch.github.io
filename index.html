@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hype Research - SPY Market Intelligence</title>
+    <title>Hype Research - Advanced Market Intelligence</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -25,27 +25,39 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            padding-top: 140px; 
         }
 
-        .animated-bg {
+        header {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
-            animation: bgPulse 15s ease-in-out infinite;
+            top: 0;
+            width: 100%;
+            z-index: 2000;
         }
-
-        @keyframes bgPulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; } }
 
         nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(10, 14, 26, 0.9);
+            background: rgba(10, 14, 26, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
-            padding: 1.5rem 5%; z-index: 1000;
-            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+
+        .market-ticker { 
+            background: var(--bg-card); 
+            border-bottom: 1px solid var(--border); 
+            padding: 0.8rem 0; 
+            overflow: hidden; 
+        }
+
+        .ticker-content { display: flex; gap: 3rem; animation: scroll 40s linear infinite; width: max-content; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .ticker-item { display: flex; gap: 0.8rem; align-items: center; white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
+        .ticker-up { color: var(--accent-green); }
+        .ticker-down { color: var(--accent-red); }
 
         .logo {
             font-family: 'Bebas Neue', cursive;
@@ -55,27 +67,30 @@
         }
 
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent-cyan); }
-
-        .hero { margin-top: 80px; min-height: 35vh; display: flex; align-items: center; justify-content: center; padding: 2rem 5%; }
-        .hero h1 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: clamp(3rem, 8vw, 6rem);
-            background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-align: center;
-        }
-
-        .market-ticker { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; overflow: hidden; }
-        .ticker-content { display: flex; gap: 3rem; animation: scroll 40s linear infinite; width: max-content; padding-left: 100%; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-        .ticker-item { display: flex; gap: 0.8rem; align-items: center; white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
-        .ticker-up { color: var(--accent-green); }
-        .ticker-down { color: var(--accent-red); }
 
         section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
         .section-title { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; margin-bottom: 2rem; color: var(--accent-cyan); }
+
+        .fundamentals-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .fund-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .fund-card h3 { color: var(--accent-cyan); margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+        
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        td { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .val { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: bold; }
 
         .module { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 1rem; overflow: hidden; }
         .module-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); }
@@ -86,46 +101,38 @@
         .lesson-item a { color: inherit; text-decoration: none; width: 100%; display: flex; justify-content: space-between; }
 
         footer { background: var(--bg-card); padding: 3rem 5%; text-align: center; border-top: 1px solid var(--border); margin-top: 4rem; }
-        .disclaimer { font-size: 0.75rem; color: var(--text-secondary); margin-top: 1.5rem; }
     </style>
 </head>
 <body>
-    <div class="animated-bg"></div>
 
-    <nav>
-        <div class="logo">HYPE CAPITAL</div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#fundamentals">SPY Data</a></li>
-            <li><a href="#courses">Courses</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav>
+            <div class="logo">HYPE CAPITAL</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#intelligence">Market Intelligence</a></li>
+                <li><a href="#courses">Courses</a></li>
+            </ul>
+        </nav>
+        <div class="market-ticker">
+            <div class="ticker-content" id="marketTicker">
+                <div style="color: var(--accent-cyan); padding-left: 20px;">Fetching Live Crypto Feed...</div>
+            </div>
+        </div>
+    </header>
 
-    <section id="home" class="hero">
-        <h1>S&P 500 ANALYSIS</h1>
+    <section id="home">
+        <h1 style="font-family: 'Bebas Neue', cursive; font-size: 4rem; text-align: center;">MASTER THE WAVE</h1>
     </section>
 
-    <div class="market-ticker">
-        <div class="ticker-content" id="marketTicker">
-            <div style="color: var(--accent-cyan); padding-left: 20px;">Updating Ticker...</div>
-        </div>
-    </div>
-
-    <section id="fundamentals">
-        <h2 class="section-title">Fundamental Data: SPY</h2>
-        <div style="overflow-x: auto; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border);">
-            <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                <thead style="color: var(--accent-cyan); border-bottom: 1px solid var(--border);">
-                    <tr>
-                        <th style="padding: 1.2rem;">ETF Metric</th>
-                        <th style="padding: 1.2rem;">Value</th>
-                        <th style="padding: 1.2rem;">Sentiment</th>
-                    </tr>
-                </thead>
-                <tbody id="fundamentalsBody">
-                    <tr><td colspan="3" style="padding: 2rem; text-align: center; opacity: 0.5;">Loading SPY Fundamentals...</td></tr>
-                </tbody>
-            </table>
+    <section id="intelligence">
+        <h2 class="section-title">Market Intelligence</h2>
+        <div class="fundamentals-container">
+            <div class="fund-card"><h3>SPY</h3><table><tr><td>NAV</td><td class="val">$681.29</td></tr><tr><td>Yield</td><td class="val">1.32%</td></tr></table></div>
+            <div class="fund-card"><h3>NVDA</h3><table><tr><td>Forward P/E</td><td class="val">37.06x</td></tr><tr><td>Margin</td><td class="val">58.8%</td></tr></table></div>
+            <div class="fund-card"><h3>AVGO</h3><table><tr><td>Current Price</td><td class="val">$331.17</td></tr><tr><td>Target</td><td class="val">$465.73</td></tr></table></div>
+            <div class="fund-card"><h3>GOOGL</h3><table><tr><td>Cloud Growth</td><td class="val">+48%</td></tr><tr><td>P/E Ratio</td><td class="val">24.1x</td></tr></table></div>
+            <div class="fund-card"><h3>AAPL</h3><table><tr><td>Q4 Rev</td><td class="val">$143.8B</td></tr><tr><td>Devices</td><td class="val">2.5B+</td></tr></table></div>
         </div>
     </section>
 
@@ -137,79 +144,3 @@
                     <h3>Module 1: Foundations</h3>
                     <span>View Lessons</span>
                 </div>
-                <div class="module-content">
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank"><span>🎥 Introduction</span><span>Watch</span></a></div>
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank"><span>🎥 Market Structure</span><span>Watch</span></a></div>
-                </div>
-            </div>
-            <div class="module">
-                <div class="module-header" onclick="toggleModule(this)">
-                    <h3>Module 2: Elliott Wave Mastery</h3>
-                    <span>View Lessons</span>
-                </div>
-                <div class="module-content">
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=bskIlCxa" target="_blank"><span>🎥 Wave Theory Intro</span><span>Watch</span></a></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="logo">HYPE CAPITAL</div>
-        <div class="disclaimer">
-            © 2026 Hype Capital. For educational use only.
-        </div>
-    </footer>
-
-    <script>
-        const API_KEY = '0DGTSXC44KHX667Y';
-
-        function toggleModule(header) {
-            header.parentElement.classList.toggle('active');
-        }
-
-        async function updateTicker() {
-            const ticker = document.getElementById('marketTicker');
-            try {
-                const res = await fetch('https://api.coingecko.com/api/coingecko/v3/simple/price?ids=bitcoin,ethereum,solana,ripple&vs_currencies=usd&include_24hr_change=true');
-                const data = await res.json();
-                const coins = [
-                    { n: 'BTC', p: data.bitcoin.usd, c: data.bitcoin.usd_24h_change },
-                    { n: 'ETH', p: data.ethereum.usd, c: data.ethereum.usd_24h_change },
-                    { n: 'SOL', p: data.solana.usd, c: data.solana.usd_24h_change },
-                    { n: 'XRP', p: data.ripple.usd, c: data.ripple.usd_24h_change }
-                ];
-                const html = coins.map(i => `
-                    <div class="ticker-item">
-                        <span>${i.n}/USD</span>
-                        <span>$${i.p.toLocaleString()}</span>
-                        <span class="${i.c >= 0 ? 'ticker-up' : 'ticker-down'}">${i.c.toFixed(2)}%</span>
-                    </div>`).join('');
-                ticker.innerHTML = html + html;
-            } catch (e) { ticker.innerHTML = "Live Feed Syncing..."; }
-        }
-
-        async function updateFundamentals() {
-            const body = document.getElementById('fundamentalsBody');
-            try {
-                // Fetching SPY specific data
-                const res = await fetch(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=SPY&apikey=${API_KEY}`);
-                const d = await res.json();
-                
-                // If API returns empty due to SPY being an ETF in some data pools, we provide the real current stats
-                body.innerHTML = `
-                    <tr><td style="padding:1rem;">Expense Ratio</td><td style="padding:1rem;">${d.ExpenseRatio || '0.09%'}</td><td class="ticker-up">Industry Low</td></tr>
-                    <tr><td style="padding:1rem;">Dividend Yield</td><td style="padding:1rem;">${d.DividendYield || '1.32%'}</td><td class="ticker-up">Stable</td></tr>
-                    <tr><td style="padding:1rem;">PE Ratio (Avg)</td><td style="padding:1rem;">${d.PERatio || '26.4'}</td><td class="ticker-down">Neutral</td></tr>
-                    <tr><td style="padding:1rem;">52 Week High</td><td style="padding:1rem;">$${d['52WeekHigh'] || '510.12'}</td><td class="ticker-up">Strong</td></tr>`;
-            } catch (e) { body.innerHTML = "<tr><td colspan='3' style='text-align:center'>Data Error</td></tr>"; }
-        }
-
-        window.addEventListener('load', () => {
-            updateTicker();
-            updateFundamentals();
-            setInterval(updateTicker, 60000);
-        });
-    </script>
-</body>
-</html>
