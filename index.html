@@ -1071,11 +1071,116 @@
             ticker.innerHTML = tickerHTML + tickerHTML;
         }
 
-        // Initialize on page load and refresh every 60 seconds
+        // // Fetch live fundamental data for a stock
+        async function fetchFundamentals(symbol) {
+            const API_KEY = '0DGTSXC44KHX667Y';
+            
+            try {
+                const response = await fetch(
+                    `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${API_KEY}`
+                );
+                const data = await response.json();
+                
+                // Calculate industry averages (you can customize these)
+                const industryAvg = {
+                    pe: 28.3,
+                    roe: 15.1,
+                    debtEquity: 0.85,
+                    profitMargin: 8.7
+                };
+                
+                return {
+                    peRatio: {
+                        value: data.PERatio ? parseFloat(data.PERatio).toFixed(1) : 'N/A',
+                        industryAvg: industryAvg.pe,
+                        status: data.PERatio && parseFloat(data.PERatio) < industryAvg.pe ? 'Undervalued' : 'Overvalued'
+                    },
+                    roe: {
+                        value: data.ReturnOnEquityTTM ? (parseFloat(data.ReturnOnEquityTTM) * 100).toFixed(1) + '%' : 'N/A',
+                        industryAvg: industryAvg.roe + '%',
+                        status: data.ReturnOnEquityTTM && (parseFloat(data.ReturnOnEquityTTM) * 100) > industryAvg.roe ? 'Strong' : 'Weak'
+                    },
+                    debtEquity: {
+                        value: data.DebtToEquityRatio || 'N/A',
+                        industryAvg: industryAvg.debtEquity,
+                        status: data.DebtToEquityRatio && parseFloat(data.DebtToEquityRatio) < industryAvg.debtEquity ? 'Healthy' : 'High'
+                    },
+                    epsGrowth: {
+                        value: data.QuarterlyEarningsGrowthYOY ? (parseFloat(data.QuarterlyEarningsGrowthYOY) * 100).toFixed(1) + '%' : 'N/A',
+                        industryAvg: industryAvg.profitMargin + '%',
+                        status: data.QuarterlyEarningsGrowthYOY && (parseFloat(data.QuarterlyEarningsGrowthYOY) * 100) > industryAvg.profitMargin ? 'Excellent' : 'Good'
+                    },
+                    freeCashFlow: {
+                        value: data.OperatingCashflowTTM ? '$' + (parseInt(data.OperatingCashflowTTM) / 1000000000).toFixed(1) + 'B' : 'N/A',
+                        industryAvg: '$1.5B',
+                        status: 'Strong'
+                    }
+                };
+            } catch (error) {
+                console.error('Error fetching fundamentals:', error);
+                return null;
+            }
+        }
+
+        // Update the fundamentals table with live data
+        async function updateFundamentalsTable(symbol = 'AAPL') {
+            const data = await fetchFundamentals(symbol);
+            
+            if (!data) {
+                console.error('Failed to fetch fundamental data');
+                return;
+            }
+            
+            // Update table cells
+            const tableBody = document.querySelector('.fundamentals-table tbody');
+            
+            if (tableBody) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td>P/E Ratio</td>
+                        <td>${data.peRatio.value}</td>
+                        <td>${data.peRatio.industryAvg}</td>
+                        <td class="${data.peRatio.status === 'Undervalued' ? 'positive' : 'negative'}">${data.peRatio.status}</td>
+                    </tr>
+                    <tr>
+                        <td>ROE</td>
+                        <td>${data.roe.value}</td>
+                        <td>${data.roe.industryAvg}</td>
+                        <td class="${data.roe.status === 'Strong' ? 'positive' : 'negative'}">${data.roe.status}</td>
+                    </tr>
+                    <tr>
+                        <td>Debt/Equity</td>
+                        <td>${data.debtEquity.value}</td>
+                        <td>${data.debtEquity.industryAvg}</td>
+                        <td class="${data.debtEquity.status === 'Healthy' ? 'positive' : 'negative'}">${data.debtEquity.status}</td>
+                    </tr>
+                    <tr>
+                        <td>EPS Growth</td>
+                        <td>${data.epsGrowth.value}</td>
+                        <td>${data.epsGrowth.industryAvg}</td>
+                        <td class="${data.epsGrowth.status === 'Excellent' ? 'positive' : 'negative'}">${data.epsGrowth.status}</td>
+                    </tr>
+                    <tr>
+                        <td>Operating Cash Flow</td>
+                        <td>${data.freeCashFlow.value}</td>
+                        <td>${data.freeCashFlow.industryAvg}</td>
+                        <td class="positive">${data.freeCashFlow.status}</td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Initialize on page load and refresh every 5 minutes
         window.addEventListener('load', () => {
             populateTicker();
-            setInterval(populateTicker, 60000); // Refresh every 60 seconds
+            setInterval(populateTicker, 300000);
+            
+            // Update fundamentals table with live data for Apple
+            updateFundamentalsTable('AAPL');
         });
+    </script>
+</body>
+</html>
  
     
     // Fetch real stock prices from Alpha Vantage
