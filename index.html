@@ -26,10 +26,10 @@
             line-height: 1.6;
             padding-top: 180px; 
         }
-      
+
 
         header { position: fixed; top: 0; width: 100%; z-index: 9999; background: var(--bg-dark); }
-        
+
         .logo-container { text-align: center; padding: 15px 0; border-bottom: 1px solid var(--border); }
         .logo-text { 
             font-family: 'Bebas Neue', cursive; 
@@ -49,7 +49,7 @@
             display: flex;
             align-items: center;
         }
-        
+
         .ticker-content { display: flex; gap: 3rem; animation: scroll 40s linear infinite; width: max-content; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .ticker-item { display: flex; gap: 0.8rem; align-items: center; white-space: nowrap; font-family: 'JetBrains Mono', monospace; color: var(--accent-gold); }
@@ -57,7 +57,7 @@
         .ticker-down { color: var(--accent-red); }
 
         section { padding: 4rem 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
-        
+
         .section-title { 
             font-family: 'Bebas Neue', cursive; 
             font-size: 3rem; 
@@ -85,7 +85,7 @@
             flex: 1 1 300px; 
         }
         .fund-card h3 { color: #ffffff; margin-bottom: 1rem; font-family: 'Bebas Neue', cursive; font-size: 2rem; }
-        
+
         table { width: 100%; border-collapse: collapse; }
         td { padding: 0.8rem 0; border-bottom: 1px solid #1a1a1a; font-size: 1rem; }
         .val { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: bold; color: var(--accent-green); }
@@ -93,7 +93,7 @@
         .module { background: var(--bg-card); border: 1px solid var(--border); margin-bottom: 1rem; }
         .module-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .module-header h3 { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; color: #ffffff; }
-        
+
         .module-content { padding: 1.5rem; display: none; background: #050505; border-top: 1px solid var(--border); }
         .module.active .module-content { display: block; }
         .lesson-item { padding: 1.2rem; background: #111; margin-bottom: 0.8rem; border-left: 4px solid var(--accent-gold); display: flex; justify-content: space-between; }
@@ -188,7 +188,7 @@
 
     <script>
         function toggleModule(header) { header.parentElement.classList.toggle('active'); }
-        
+
         async function updateTicker() {
             const ticker = document.getElementById('marketTicker');
             try {
@@ -208,7 +208,7 @@
                         <span>$${i.p.toLocaleString()}</span>
                         <span class="${i.c >= 0 ? 'ticker-up' : 'ticker-down'}">${i.c.toFixed(2)}%</span>
                     </div>`).join('');
-                
+
                 // Set the innerHTML and duplicate for seamless loop
                 ticker.innerHTML = tickerItems + tickerItems;
             } catch (e) { 
@@ -229,11 +229,18 @@
                 messages.scrollTop = messages.scrollHeight;
             }
         }
-        
+
         window.addEventListener('load', () => { 
             updateTicker(); 
             setInterval(updateTicker, 60000); 
         });
+
+
     </script>
- </body>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+  new Crate({
+    server: '1452115058015600672'
+  })
+</script></body>
 </html>
