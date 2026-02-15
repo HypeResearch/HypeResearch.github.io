@@ -54,11 +54,21 @@
         .section-title { font-family: 'Bebas Neue', cursive; font-size: 3rem; margin-bottom: 2rem; color: var(--accent-cyan); text-align: center; }
 
         /* MARKET INTELLIGENCE CARDS */
-        .fundamentals-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .fund-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; border-top: 3px solid var(--accent-gold); }
-        .fund-card h3 { color: var(--accent-gold); margin-bottom: 1rem; border-bottom: 1px solid var(--border); }
-        table { width: 100%; font-size: 0.9rem; }
-        .val { text-align: right; font-family: 'JetBrains Mono', monospace; color: var(--accent-green); }
+        <section id="intelligence">
+        <h2 class="section-title">Market Fundamentals</h2>
+        <div class="fundamentals-container">
+            <div class="fund-card"><h3>SPY (S&P 500)</h3><table><tr><td>NAV</td><td class="val">$681.29</td></tr><tr><td>Expense</td><td class="val">0.09%</td></tr></table></div>
+            <div class="fund-card"><h3>NVDA (Nvidia)</h3><table><tr><td>Forward P/E</td><td class="val">37.06x</td></tr><tr><td>Margin</td><td class="val">58.8%</td></tr></table></div>
+            <div class="fund-card"><h3>AVGO (Broadcom)</h3><table><tr><td>Yield</td><td class="val">1.41%</td></tr><tr><td>Target</td><td class="val">$465.73</td></tr></table></div>
+            <div class="fund-card"><h3>GOOGL (Alphabet)</h3><table><tr><td>Cloud</td><td class="val">+48%</td></tr><tr><td>P/E</td><td class="val">24.1x</td></tr></table></div>
+            <div class="fund-card"><h3>AAPL (Apple)</h3><table><tr><td>Devices</td><td class="val">2.5B+</td></tr><tr><td>Cash</td><td class="val">$162B</td></tr></table></div>
+
+            <div class="fund-card"><h3>AMD (Advanced Micro)</h3><table><tr><td>Data Center</td><td class="val">+60% Growth</td></tr><tr><td>AI Chipshare</td><td class="val">Expanding</td></tr></table></div>
+            <div class="fund-card"><h3>TSM (Taiwan Semi)</h3><table><tr><td>Node Lead</td><td class="val">2nm (A16)</td></tr><tr><td>Market Cap</td><td class="val">$1.1T+</td></tr></table></div>
+            <div class="fund-card"><h3>MSFT (Microsoft)</h3><table><tr><td>Azure Rev</td><td class="val">+26%</td></tr><tr><td>AI Income</td><td class="val">Scaling</td></tr></table></div>
+            <div class="fund-card"><h3>MU (Micron)</h3><table><tr><td>HBM Memory</td><td class="val">Sold Out</td></tr><tr><td>1yr Return</td><td class="val">+308%</td></tr></table></div>
+        </div>
+    </section>
 
         /* COURSE MODULES */
         <section id="courses">
