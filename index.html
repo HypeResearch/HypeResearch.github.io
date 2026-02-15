@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HYPE - High Yield Performance Equity</title>
+    <title>H.Y.P.E. - High Yield Performance Equity</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -28,9 +27,9 @@
             padding-top: 180px; 
         }
 
-
+        /* FIXED HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 9999; background: var(--bg-dark); }
-
+        
         .logo-container { text-align: center; padding: 15px 0; border-bottom: 1px solid var(--border); }
         .logo-text { 
             font-family: 'Bebas Neue', cursive; 
@@ -50,23 +49,18 @@
             display: flex;
             align-items: center;
         }
-
+        
         .ticker-content { display: flex; gap: 3rem; animation: scroll 40s linear infinite; width: max-content; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .ticker-item { display: flex; gap: 0.8rem; align-items: center; white-space: nowrap; font-family: 'JetBrains Mono', monospace; color: var(--accent-gold); }
         .ticker-up { color: var(--accent-green); }
         .ticker-down { color: var(--accent-red); }
 
+        /* SECTIONS */
         section { padding: 4rem 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+        .section-title { font-family: 'Bebas Neue', cursive; font-size: 3rem; margin-bottom: 2rem; color: var(--accent-gold); text-align: center; }
 
-        .section-title { 
-            font-family: 'Bebas Neue', cursive; 
-            font-size: 3rem; 
-            margin-bottom: 2rem; 
-            color: #d4af37; 
-            text-align: center; 
-        }
-
+        /* HERO AREA */
         .hero { text-align: center; padding: 6rem 0; border: none; }
         .hero h1 { 
             font-family: 'Bebas Neue', cursive; 
@@ -76,6 +70,7 @@
             letter-spacing: 3px;
         }
 
+        /* FUNDAMENTALS */
         .fundamentals-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
         .fund-card { 
             background: var(--bg-card); 
@@ -86,20 +81,20 @@
             flex: 1 1 300px; 
         }
         .fund-card h3 { color: #ffffff; margin-bottom: 1rem; font-family: 'Bebas Neue', cursive; font-size: 2rem; }
-
         table { width: 100%; border-collapse: collapse; }
         td { padding: 0.8rem 0; border-bottom: 1px solid #1a1a1a; font-size: 1rem; }
         .val { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: bold; color: var(--accent-green); }
 
+        /* MODULES */
         .module { background: var(--bg-card); border: 1px solid var(--border); margin-bottom: 1rem; }
         .module-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .module-header h3 { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; color: #ffffff; }
-
         .module-content { padding: 1.5rem; display: none; background: #050505; border-top: 1px solid var(--border); }
         .module.active .module-content { display: block; }
         .lesson-item { padding: 1.2rem; background: #111; margin-bottom: 0.8rem; border-left: 4px solid var(--accent-gold); display: flex; justify-content: space-between; }
         .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; }
 
+        /* CHAT ROOM */
         .chat-container { height: 500px; background: var(--bg-card); border: 1px solid var(--accent-gold); display: flex; flex-direction: column; }
         .chat-messages { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; background: #000; }
         .message { padding: 1rem; border-radius: 4px; max-width: 80%; background: #1a1a1a; border: 1px solid var(--border); }
@@ -128,7 +123,7 @@
         <h1>HIGH YIELD PERFORMANCE EQUITY</h1>
     </section>
 
-    <section id="Market REPORT">
+    <section id="report">
         <h2 class="section-title">MARKET REPORT</h2>
         <div class="fundamentals-container">
             <div class="fund-card"><h3>SPY</h3><table><tr><td>NAV</td><td class="val">$681.29</td></tr></table></div>
@@ -143,8 +138,8 @@
         </div>
     </section>
 
-    <section id="courses">
-        <h2 class="section-title">TRADING Strategies</h2>
+    <section id="strategies">
+        <h2 class="section-title">TRADING STRATEGIES</h2>
         <div class="course-modules">
             <div class="module">
                 <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 1: FOUNDATIONS</h3><span>▼</span></div>
@@ -184,7 +179,7 @@
 
     <footer>
         <div class="footer-logo">HYPE CAPITAL</div>
-        <p>© 2026 HIGH YIELD PERFORMANCE EQUITY.</p>
+        <p>© 2026 HIGH YIELD PERFORMANCE EQUITY. TRADING INVOLVES RISK.</p>
     </footer>
 
     <script>
@@ -202,15 +197,12 @@
                     { n: 'XRP', p: data.ripple.usd, c: data.ripple.usd_24h_change },
                     { n: 'ADA', p: data.cardano.usd, c: data.cardano.usd_24h_change }
                 ];
-                // Create the items
                 const tickerItems = coins.map(i => `
                     <div class="ticker-item">
                         <span>${i.n}/USD</span>
                         <span>$${i.p.toLocaleString()}</span>
                         <span class="${i.c >= 0 ? 'ticker-up' : 'ticker-down'}">${i.c.toFixed(2)}%</span>
                     </div>`).join('');
-
-                // Set the innerHTML and duplicate for seamless loop
                 ticker.innerHTML = tickerItems + tickerItems;
             } catch (e) { 
                 console.error(e);
@@ -231,12 +223,9 @@
             }
         }
 
-  <script>
         window.addEventListener('load', () => { 
-            if (typeof updateTicker === "function") {
-                updateTicker(); 
-                setInterval(updateTicker, 60000); 
-            }
+            updateTicker(); 
+            setInterval(updateTicker, 60000); 
         });
     </script>
 
