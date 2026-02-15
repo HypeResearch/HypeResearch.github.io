@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hype Research - Advanced Market Intelligence</title>
+    <title>Hype Capital - Elite Market Intelligence</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,13 +11,13 @@
             --bg-card: #141824;
             --accent-cyan: #00d9ff;
             --accent-green: #00ff88;
-            --accent-red: #ff3366;
+            --accent-gold: #d4af37;
             --text-primary: #ffffff;
             --text-secondary: #8892b0;
             --border: #1f2937;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             font-family: 'Manrope', sans-serif;
@@ -28,79 +28,54 @@
             padding-top: 140px; 
         }
 
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 2000;
-        }
-
+        /* FIXED HEADER & TICKER */
+        header { position: fixed; top: 0; width: 100%; z-index: 2000; }
         nav {
             background: rgba(10, 14, 26, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border);
             padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
         }
-
-        .market-ticker { 
-            background: var(--bg-card); 
-            border-bottom: 1px solid var(--border); 
-            padding: 0.8rem 0; 
-            overflow: hidden; 
-        }
-
+        .market-ticker { background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 0.8rem 0; overflow: hidden; }
         .ticker-content { display: flex; gap: 3rem; animation: scroll 40s linear infinite; width: max-content; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
         .ticker-item { display: flex; gap: 0.8rem; align-items: center; white-space: nowrap; font-family: 'JetBrains Mono', monospace; }
         .ticker-up { color: var(--accent-green); }
         .ticker-down { color: var(--accent-red); }
 
-        .logo {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2rem; letter-spacing: 2px;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-
+        .logo { font-family: 'Bebas Neue', cursive; font-size: 2rem; letter-spacing: 2px; color: var(--accent-cyan); }
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent-cyan); }
 
-        section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
-        .section-title { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; margin-bottom: 2rem; color: var(--accent-cyan); }
+        section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; display: none; }
+        section.active { display: block; }
+        .section-title { font-family: 'Bebas Neue', cursive; font-size: 3rem; margin-bottom: 2rem; color: var(--accent-cyan); text-align: center; }
 
-        .fundamentals-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
+        /* MARKET INTELLIGENCE CARDS */
+        .fundamentals-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .fund-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; border-top: 3px solid var(--accent-gold); }
+        .fund-card h3 { color: var(--accent-gold); margin-bottom: 1rem; border-bottom: 1px solid var(--border); }
+        table { width: 100%; font-size: 0.9rem; }
+        .val { text-align: right; font-family: 'JetBrains Mono', monospace; color: var(--accent-green); }
 
-        .fund-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-        }
-
-        .fund-card h3 { color: var(--accent-cyan); margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-        
-        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-        td { padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .val { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: bold; }
-
+        /* COURSE MODULES */
         .module { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 1rem; overflow: hidden; }
-        .module-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); }
+        .module-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; background: rgba(255,255,255,0.02); }
         .module-content { padding: 1.5rem; display: none; background: #0c101b; }
         .module.active .module-content { display: block; }
-        
         .lesson-item { padding: 1rem; background: var(--bg-dark); margin-bottom: 0.5rem; border-left: 3px solid var(--accent-cyan); display: flex; justify-content: space-between; }
         .lesson-item a { color: inherit; text-decoration: none; width: 100%; display: flex; justify-content: space-between; }
 
-        footer { background: var(--bg-card); padding: 3rem 5%; text-align: center; border-top: 1px solid var(--border); margin-top: 4rem; }
+        /* CHAT ROOM STYLES */
+        .chat-container { height: 500px; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); display: flex; flex-direction: column; }
+        .chat-messages { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+        .message { padding: 0.8rem 1.2rem; border-radius: 8px; max-width: 80%; }
+        .msg-bot { background: rgba(0, 217, 255, 0.1); border: 1px solid var(--accent-cyan); align-self: flex-start; }
+        .chat-input-area { padding: 1rem; border-top: 1px solid var(--border); display: flex; gap: 1rem; }
+        input[type="text"] { flex: 1; background: var(--bg-dark); border: 1px solid var(--border); color: white; padding: 0.8rem; border-radius: 6px; }
+        .btn-send { background: var(--accent-cyan); color: var(--bg-dark); border: none; padding: 0 1.5rem; border-radius: 6px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -109,9 +84,10 @@
         <nav>
             <div class="logo">HYPE CAPITAL</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#intelligence">Market Intelligence</a></li>
-                <li><a href="#courses">Courses</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('home')">Home</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('intelligence')">Intelligence</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('courses')">Courses</a></li>
+                <li><a href="javascript:void(0)" onclick="showPage('chat')">Chat Room</a></li>
             </ul>
         </nav>
         <div class="market-ticker">
@@ -121,26 +97,104 @@
         </div>
     </header>
 
-    <section id="home">
-        <h1 style="font-family: 'Bebas Neue', cursive; font-size: 4rem; text-align: center;">MASTER THE WAVE</h1>
+    <section id="home" class="active">
+        <h1 class="section-title">MASTER THE WAVE</h1>
+        <p style="text-align: center; color: var(--text-secondary);">Welcome to Hype Capital. Advanced Wave & Fundamental Analysis.</p>
     </section>
 
     <section id="intelligence">
-        <h2 class="section-title">Market Intelligence</h2>
+        <h2 class="section-title">Market Fundamentals</h2>
         <div class="fundamentals-container">
-            <div class="fund-card"><h3>SPY</h3><table><tr><td>NAV</td><td class="val">$681.29</td></tr><tr><td>Yield</td><td class="val">1.32%</td></tr></table></div>
+            <div class="fund-card"><h3>SPY</h3><table><tr><td>NAV</td><td class="val">$681.29</td></tr><tr><td>Expense</td><td class="val">0.09%</td></tr></table></div>
             <div class="fund-card"><h3>NVDA</h3><table><tr><td>Forward P/E</td><td class="val">37.06x</td></tr><tr><td>Margin</td><td class="val">58.8%</td></tr></table></div>
-            <div class="fund-card"><h3>AVGO</h3><table><tr><td>Current Price</td><td class="val">$331.17</td></tr><tr><td>Target</td><td class="val">$465.73</td></tr></table></div>
-            <div class="fund-card"><h3>GOOGL</h3><table><tr><td>Cloud Growth</td><td class="val">+48%</td></tr><tr><td>P/E Ratio</td><td class="val">24.1x</td></tr></table></div>
-            <div class="fund-card"><h3>AAPL</h3><table><tr><td>Q4 Rev</td><td class="val">$143.8B</td></tr><tr><td>Devices</td><td class="val">2.5B+</td></tr></table></div>
+            <div class="fund-card"><h3>AVGO</h3><table><tr><td>Yield</td><td class="val">1.41%</td></tr><tr><td>Target</td><td class="val">$465.73</td></tr></table></div>
+            <div class="fund-card"><h3>GOOGL</h3><table><tr><td>Cloud</td><td class="val">+48%</td></tr><tr><td>P/E</td><td class="val">24.1x</td></tr></table></div>
+            <div class="fund-card"><h3>AAPL</h3><table><tr><td>Devices</td><td class="val">2.5B+</td></tr><tr><td>Cash</td><td class="val">$162B</td></tr></table></div>
         </div>
     </section>
 
     <section id="courses">
-        <h2 class="section-title">Trading Modules</h2>
+        <h2 class="section-title">Trading Curriculum</h2>
         <div class="course-modules">
             <div class="module">
-                <div class="module-header" onclick="toggleModule(this)">
-                    <h3>Module 1: Foundations</h3>
-                    <span>View Lessons</span>
+                <div class="module-header" onclick="toggleModule(this)"><h3>Module 1: Foundations</h3><span>▼</span></div>
+                <div class="module-content">
+                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank"><span>🎥 Introduction</span><span>Watch</span></a></div>
+                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank"><span>🎥 Market Structure</span><span>Watch</span></a></div>
                 </div>
+            </div>
+            <div class="module">
+                <div class="module-header" onclick="toggleModule(this)"><h3>Module 2: Wave Mastery</h3><span>▼</span></div>
+                <div class="module-content">
+                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=bskIlCxa" target="_blank"><span>🎥 Wave Theory Intro</span><span>Watch</span></a></div>
+                </div>
+            </div>
+            <div class="module">
+                <div class="module-header" onclick="toggleModule(this)"><h3>Module 3: Technicals</h3><span>▼</span></div>
+                <div class="module-content">
+                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=46sRElHMfww" target="_blank"><span>🎥 Trendlines</span><span>Watch</span></a></div>
+                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank"><span>🎥 Fibonacci Techniques</span><span>Watch</span></a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="chat">
+        <h2 class="section-title">Community Chat</h2>
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message msg-bot">Welcome to the Hype Capital Chat! Discuss trends and waves here.</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Type a message...">
+                <button class="btn-send" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // NAVIGATION LOGIC
+        function showPage(pageId) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function toggleModule(header) { header.parentElement.classList.toggle('active'); }
+
+        // CRYPTO TICKER LOGIC
+        async function updateTicker() {
+            const ticker = document.getElementById('marketTicker');
+            try {
+                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano&vs_currencies=usd&include_24hr_change=true');
+                const data = await res.json();
+                const coins = [
+                    { n: 'BTC', p: data.bitcoin.usd, c: data.bitcoin.usd_24h_change },
+                    { n: 'ETH', p: data.ethereum.usd, c: data.ethereum.usd_24h_change },
+                    { n: 'SOL', p: data.solana.usd, c: data.solana.usd_24h_change },
+                    { n: 'XRP', p: data.ripple.usd, c: data.ripple.usd_24h_change }
+                ];
+                const html = coins.map(i => `<div class="ticker-item"><span>${i.n}/USD</span><span>$${i.p.toLocaleString()}</span><span class="${i.c >= 0 ? 'ticker-up' : 'ticker-down'}">${i.c.toFixed(2)}%</span></div>`).join('');
+                ticker.innerHTML = html + html;
+            } catch (e) { ticker.innerHTML = "Offline Feed"; }
+        }
+
+        // CHAT LOGIC
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            if (input.value.trim() !== "") {
+                const msg = document.createElement('div');
+                msg.className = "message";
+                msg.style.background = "rgba(255,255,255,0.05)";
+                msg.style.alignSelf = "flex-end";
+                msg.textContent = input.value;
+                messages.appendChild(msg);
+                input.value = "";
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+
+        window.addEventListener('load', () => { updateTicker(); setInterval(updateTicker, 60000); });
+    </script>
+</body>
+</html>
