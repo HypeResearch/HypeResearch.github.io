@@ -453,16 +453,22 @@
 
   <script>
         window.addEventListener('load', () => { 
-            updateTicker(); 
-            setInterval(updateTicker, 60000); 
+            if (typeof updateTicker === "function") {
+                updateTicker(); 
+                setInterval(updateTicker, 60000); 
+            }
         });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
       new Crate({
-        server: '1452115058015600672'
+        server: '1452115058015600672',
+        shard: 'https://e.widgetbot.io',
+        color: '#D4AF37',
+        logo: 'https://cdn.discordapp.com/avatars/844770793036185640/6d605acde7fa846d6ae1014046ababa2?size=512'
       })
     </script>
+
 </body>
 </html>
 
