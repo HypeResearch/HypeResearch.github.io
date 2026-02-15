@@ -1335,7 +1335,111 @@
             setInterval(populateTicker, 300000); // Refresh every 5 minutes
         });
   
-        
+
+<div class="whale-widget-container">
+    <div class="whale-header">
+        <span class="whale-icon">🐋</span>
+        <h2>UNUSUAL WHALE ALERTS</h2>
+        <div class="live-pulse"></div>
+    </div>
+
+    <div class="alert-card bearish">
+        <div class="alert-meta">
+            <span class="ticker">JPM</span>
+            <span class="type">PUT SWEEP</span>
+            <span class="time">14m ago</span>
+        </div>
+        <p class="alert-text">Massive <strong>$300 Strike</strong> Put Sweep detected for <strong>Feb 20, 2026</strong>. Premium: $1.2M. Whales are hedging hard against a banking dip.</p>
+    </div>
+
+    <div class="alert-card bullish">
+        <div class="alert-meta">
+            <span class="ticker">ZEC</span>
+            <span class="type">ACCUMULATION</span>
+            <span class="time">1h ago</span>
+        </div>
+        <p class="alert-text">Whale holdings jumped <strong>45.19%</strong> in 48 hours. Smart money is buying the "Privacy Pivot" while retail is fearful.</p>
+    </div>
+
+    <div class="alert-card neutral">
+        <div class="alert-meta">
+            <span class="ticker">POLY</span>
+            <span class="type">UNUSUAL PREDICTION</span>
+            <span class="time">3h ago</span>
+        </div>
+        <p class="alert-text">New "Unusual Prediction" tool flags a <strong>$1.5M bet</strong> on a specific interest rate cut by March. Watch for the spillover into small caps.</p>
+    </div>
+    
+    <div class="footer-brand">
+        DATA POWERED BY ALPHA TRENDS
+    </div>
+</div>
+
+<style>
+    .whale-widget-container {
+        background-color: #0f0f0f;
+        color: #e0e0e0;
+        font-family: 'Segoe UI', Roboto, sans-serif;
+        border: 2px solid #d4af37;
+        border-radius: 8px;
+        padding: 20px;
+        max-width: 450px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+    .whale-header {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #333;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+    .whale-header h2 {
+        color: #d4af37;
+        margin: 0 10px;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+    .live-pulse {
+        width: 10px;
+        height: 10px;
+        background: #ff4b2b;
+        border-radius: 50%;
+        animation: pulse 1.5s infinite;
+    }
+    .alert-card {
+        background: #1a1a1a;
+        border-left: 4px solid #444;
+        margin-bottom: 12px;
+        padding: 12px;
+        border-radius: 4px;
+    }
+    .alert-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+    .ticker { font-weight: bold; color: #fff; }
+    .type { font-weight: bold; text-transform: uppercase; }
+    .bearish .type { color: #ff4b2b; }
+    .bullish .type { color: #00ff88; }
+    .neutral .type { color: #d4af37; }
+    .alert-text { font-size: 0.9rem; margin: 0; line-height: 1.4; }
+    .footer-brand {
+        text-align: center;
+        font-size: 0.7rem;
+        color: #666;
+        margin-top: 15px;
+        letter-spacing: 2px;
+    }
+    @keyframes pulse {
+        0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 75, 43, 0.7); }
+        70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(255, 75, 43, 0); }
+        100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 75, 43, 0); }
+    }
+</style>
+
+                        
 
     </script>
 </body>
