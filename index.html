@@ -29,12 +29,12 @@
             padding-top: 160px; 
         }
 
-        /* HEADER & NAVIGATION */
+        /* FIXED HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: var(--bg-dark); }
         
         nav {
             border-bottom: 1px solid var(--border);
-            padding: 1.5rem 5%;
+            padding: 1rem 5%;
             display: flex; justify-content: space-between; align-items: center;
         }
 
@@ -62,7 +62,7 @@
         }
 
         .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; letter-spacing: 1px; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent-gold); }
 
         /* SECTIONS */
@@ -73,13 +73,13 @@
         .hero { text-align: center; padding: 5rem 0; border: none; }
         .hero h1 { 
             font-family: 'Bebas Neue', cursive; 
-            font-size: clamp(3rem, 10vw, 6.5rem); 
+            font-size: clamp(2.5rem, 8vw, 6rem); 
             line-height: 1.1; 
-            color: #ffffff; /* WHITE AS REQUESTED */
-            letter-spacing: 4px;
+            color: #ffffff; /* WHITE TEXT */
+            letter-spacing: 2px;
         }
 
-        /* CARDS GRID */
+        /* FUNDAMENTALS GRID */
         .fundamentals-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
         .fund-card { 
             background: var(--bg-card); 
@@ -88,10 +88,8 @@
             border-radius: 4px; 
             padding: 1.5rem; 
             flex: 1 1 300px; 
-            transition: 0.4s; 
         }
-        .fund-card:hover { border-color: var(--accent-gold); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15); transform: translateY(-5px); }
-        .fund-card h3 { color: var(--accent-gold); margin-bottom: 1.5rem; font-family: 'Bebas Neue', cursive; font-size: 1.8rem; }
+        .fund-card h3 { color: var(--accent-gold); margin-bottom: 1rem; font-family: 'Bebas Neue', cursive; font-size: 1.8rem; }
         
         table { width: 100%; border-collapse: collapse; }
         td { padding: 0.8rem 0; border-bottom: 1px solid #1a1a1a; font-size: 0.95rem; }
@@ -113,8 +111,8 @@
         .message { padding: 0.8rem 1.2rem; border-radius: 4px; max-width: 85%; background: #111; border: 1px solid var(--border); }
         .msg-bot { border-color: var(--accent-gold); color: var(--accent-gold); }
         .chat-input-area { padding: 1rem; border-top: 1px solid var(--border); display: flex; gap: 1rem; }
-        input[type="text"] { flex: 1; background: #000; border: 1px solid var(--border); color: white; padding: 1rem; border-radius: 0; }
-        .btn-send { background: var(--accent-gold); color: #000; border: none; padding: 0 2rem; font-weight: 800; cursor: pointer; text-transform: uppercase; }
+        input[type="text"] { flex: 1; background: #000; border: 1px solid var(--border); color: white; padding: 1rem; }
+        .btn-send { background: var(--accent-gold); color: #000; border: none; padding: 0 2rem; font-weight: 800; cursor: pointer; }
 
         footer { padding: 4rem 5%; text-align: center; border-top: 1px solid var(--border); }
         .footer-logo { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--accent-gold); }
@@ -194,51 +192,4 @@
             </div>
             <div class="chat-input-area">
                 <input type="text" id="chatInput" placeholder="ENTER MESSAGE...">
-                <button class="btn-send" onclick="sendMessage()">SEND</button>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-logo">H.Y.P.E. CAPITAL</div>
-        <p>© 2026 HIGH YIELD PERFORMANCE EQUITY. TRADING INVOLVES RISK.</p>
-    </footer>
-
-    <script>
-        function toggleModule(header) { header.parentElement.classList.toggle('active'); }
-
-        async function updateTicker() {
-            const ticker = document.getElementById('marketTicker');
-            try {
-                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano&vs_currencies=usd&include_24hr_change=true');
-                const data = await res.json();
-                const coins = [
-                    { n: 'BTC', p: data.bitcoin.usd, c: data.bitcoin.usd_24h_change },
-                    { n: 'ETH', p: data.ethereum.usd, c: data.ethereum.usd_24h_change },
-                    { n: 'SOL', p: data.solana.usd, c: data.solana.usd_24h_change },
-                    { n: 'XRP', p: data.ripple.usd, c: data.ripple.usd_24h_change },
-                    { n: 'ADA', p: data.cardano.usd, c: data.cardano.usd_24h_change }
-                ];
-                const html = coins.map(i => `<div class="ticker-item"><span>${i.n}/USD</span><span>$${i.p.toLocaleString()}</span><span class="${i.c >= 0 ? 'ticker-up' : 'ticker-down'}">${i.c.toFixed(2)}%</span></div>`).join('');
-                ticker.innerHTML = html + html;
-            } catch (e) { ticker.innerHTML = "SYNCING MARKET DATA..."; }
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const messages = document.getElementById('chatMessages');
-            if (input.value.trim() !== "") {
-                const msg = document.createElement('div');
-                msg.className = "message";
-                msg.style.alignSelf = "flex-end";
-                msg.textContent = input.value;
-                messages.appendChild(msg);
-                input.value = "";
-                messages.scrollTop = messages.scrollHeight;
-            }
-        }
-
-        window.addEventListener('load', () => { updateTicker(); setInterval(updateTicker, 60000); });
-    </script>
-</body>
-</html>
+                <button class="btn-
