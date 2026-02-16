@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>H.Y.P.E. - High Yield Performance Equity</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- THEME VARIABLES --- */
         :root {
             --bg-dark: #000000;
             --bg-card: #0c0c0c;
@@ -13,155 +15,270 @@
             --text-primary: #ffffff;
             --text-secondary: #aaaaaa;
             --border: #222222;
-            --accent-green: #00ff88;
-            --accent-red: #ff3366;
         }
 
+        /* --- RESET & BASIC SETUP --- */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
+        
         body {
             font-family: 'Manrope', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
-            padding-top: 180px; 
+            padding-top: 140px; 
+            overflow-x: hidden;
         }
 
-        /* FIXED HEADER */
-        header { position: fixed; top: 0; width: 100%; z-index: 9999; background: var(--bg-dark); }
+        /* --- BACKGROUND ART --- */
+        .background-art {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 50vw;   /* Covers half the screen width */
+            height: 50vh;  /* Covers half the screen height */
+            /* THIS LOOKS FOR THE IMAGE YOU UPLOAD */
+            background-image: url('bullbear.png'); 
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: bottom right;
+            z-index: -1;   /* Behind everything */
+            opacity: 0.2;  /* SOFT FADE (Low number = more subtle) */
+            pointer-events: none;
+        }
+
+        /* --- FIXED HEADER --- */
+        header { position: fixed; top: 0; width: 100%; z-index: 9999; background: var(--bg-dark); border-bottom: 1px solid var(--border); }
         
-        .logo-container { text-align: center; padding: 15px 0; border-bottom: 1px solid var(--border); }
+        .logo-container { text-align: center; padding: 15px 0; border-bottom: 1px solid #111; }
         .logo-text { 
             font-family: 'Bebas Neue', cursive; 
-            font-size: 4rem; 
-            letter-spacing: 5px; 
+            font-size: 3.5rem; 
+            letter-spacing: 4px; 
             color: var(--accent-gold); 
             text-decoration: none;
             display: block;
         }
 
+        /* --- TICKER TAPE --- */
         .market-ticker { 
             background: #000; 
             border-bottom: 1px solid var(--accent-gold); 
-            padding: 12px 0; 
+            padding: 10px 0; 
             overflow: hidden; 
             height: 45px;
             display: flex;
             align-items: center;
         }
-        
         .ticker-content { display: flex; gap: 3rem; animation: scroll 40s linear infinite; width: max-content; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .ticker-item { display: flex; gap: 0.8rem; align-items: center; white-space: nowrap; font-family: 'JetBrains Mono', monospace; color: var(--accent-gold); }
-        .ticker-up { color: var(--accent-green); }
-        .ticker-down { color: var(--accent-red); }
+        .ticker-item { display: flex; gap: 0.8rem; align-items: center; white-space: nowrap; font-family: 'JetBrains Mono', monospace; color: var(--accent-gold); font-size: 0.9rem; }
+        .ticker-up { color: #00ff88; }
+        .ticker-down { color: #ff3366; }
 
-        /* SECTIONS */
-        section { padding: 4rem 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
-        .section-title { font-family: 'Bebas Neue', cursive; font-size: 3rem; margin-bottom: 2rem; color: var(--accent-gold); text-align: center; }
+        /* --- SECTIONS GENERAL --- */
+        section { padding: 2rem 5%; max-width: 1400px; margin: 0 auto; margin-bottom: 4rem; position: relative; }
+        .section-title { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--accent-gold); border-bottom: 2px solid #111; display: inline-block; }
 
-        .hero { text-align: center; padding: 6rem 0; border: none; }
-        .hero h1 { font-family: 'Bebas Neue', cursive; font-size: clamp(3rem, 10vw, 7rem); color: #ffffff; letter-spacing: 3px; }
+        /* --- HEATMAP CONTAINER --- */
+        .heatmap-wrapper {
+            background: rgba(0, 0, 0, 0.85); /* Glassy Black */
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 10px;
+            height: 800px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+        }
 
-        /* MODULES */
-        .module { background: var(--bg-card); border: 1px solid var(--border); margin-bottom: 1rem; }
-        .module-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .module-header h3 { font-family: 'Bebas Neue', cursive; font-size: 1.8rem; color: #ffffff; }
-        .module-content { padding: 1.5rem; display: none; background: #050505; border-top: 1px solid var(--border); }
+        /* --- FUNDAMENTALS --- */
+        .fundamentals-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .fund-card { 
+            background: rgba(12, 12, 12, 0.95); /* Mostly solid for readability */
+            border: 1px solid var(--border); 
+            border-top: 4px solid var(--accent-gold);
+            border-radius: 4px; 
+            padding: 1.5rem; 
+            flex: 1 1 300px; 
+        }
+        .fund-card h3 { color: #ffffff; margin-bottom: 1rem; font-family: 'Bebas Neue', cursive; font-size: 2rem; }
+        table { width: 100%; border-collapse: collapse; }
+        td { padding: 0.8rem 0; border-bottom: 1px solid #1a1a1a; font-size: 1rem; }
+        .val { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: bold; color: #00ff88; }
+
+
+        /* --- MODULES --- */
+        .module { background: rgba(12, 12, 12, 0.95); border: 1px solid var(--border); margin-bottom: 1rem; border-radius: 8px; overflow: hidden; }
+        .module-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
+        .module-header:hover { background: #111; }
+        .module-header h3 { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; color: #ffffff; margin: 0; }
+        
+        .module-content { padding: 0; display: none; background: #050505; border-top: 1px solid var(--border); }
         .module.active .module-content { display: block; }
-        .lesson-item { padding: 1.2rem; background: #111; margin-bottom: 0.8rem; border-left: 4px solid var(--accent-gold); display: flex; justify-content: space-between; }
-        .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; }
+        
+        .lesson-item { padding: 1.5rem; border-bottom: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; }
+        .lesson-item:last-child { border-bottom: none; }
+        .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; }
+        .lesson-item span:last-child { color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 5px 15px; border-radius: 4px; font-size: 0.8rem; }
+        .lesson-item:hover { background: #111; }
 
-        footer { padding: 5rem 5%; text-align: center; background: #000; border-top: 1px solid var(--border); }
+        /* --- FOOTER --- */
+        footer { padding: 4rem 5%; text-align: center; background: #050505; border-top: 1px solid var(--border); margin-top: 4rem; position: relative; z-index: 10; }
+        .footer-logo { font-family: 'Bebas Neue'; color: var(--accent-gold); font-size: 2rem; margin-bottom: 1rem; }
+        .footer-text { color: #555; font-size: 0.8rem; }
     </style>
 </head>
+
 <body>
+
+    <div class="background-art"></div>
 
     <header>
         <div class="logo-container">
-            <div class="logo-text">HYPE CAPITAL</div>
+            <a href="#" class="logo-text">HYPE CAPITAL</a>
         </div>
         <div class="market-ticker">
             <div class="ticker-content" id="marketTicker">
-                <div style="color: var(--accent-gold); padding-left: 20px;">INITIALIZING FEED...</div>
+                <div style="color: var(--accent-gold); padding-left: 20px;">CONNECTING TO EXCHANGE...</div>
             </div>
         </div>
     </header>
 
-    <section class="hero">
-        <h1>HIGH YIELD PERFORMANCE EQUITY</h1>
-    </section>
-
-    <section id="market-pulse" style="padding: 2rem 5%;">
-        <div class="market-pulse-container" style="background: #000; border: 1px solid #FFD700; border-radius: 12px; padding: 20px; overflow: hidden;">
-            <h2 style="color: #FFD700; font-family: 'Bebas Neue', cursive; margin-bottom: 15px; font-size: 2rem; letter-spacing: 1px;">
-                ● S&P 500 LIVE HEATMAP
-            </h2>
-            <div class="tradingview-widget-container" style="height: 500px;">
-                <div class="tradingview-widget-container__widget"></div>
+    <section id="market-pulse" style="margin-top: 20px;">
+        <h2 class="section-title">MARKET PULSE</h2>
+        <div class="heatmap-wrapper">
+            <div class="tradingview-widget-container" style="height:100%;width:100%">
+                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
                 {
+                  "exchanges": [],
                   "dataSource": "S&P500",
                   "grouping": "sector",
                   "blockSize": "market_cap",
                   "blockColor": "change",
                   "locale": "en",
+                  "symbolUrl": "",
                   "colorTheme": "dark",
                   "hasTopBar": false,
+                  "isDatasetEnabled": false,
                   "isTransparent": true,
                   "width": "100%",
                   "height": "100%"
                 }
                 </script>
             </div>
+            </div>
+    </section>
+
+    <section id="report">
+        <h2 class="section-title">MARKET REPORT</h2>
+        <div class="fundamentals-container">
+            <div class="fund-card"><h3>SPY</h3><table><tr><td>NAV</td><td class="val">$681.29</td></tr></table></div>
+            <div class="fund-card"><h3>NVDA</h3><table><tr><td>PE</td><td class="val">37.06x</td></tr></table></div>
+            <div class="fund-card"><h3>AVGO</h3><table><tr><td>YIELD</td><td class="val">1.41%</td></tr></table></div>
+            <div class="fund-card"><h3>GOOGL</h3><table><tr><td>CLOUD</td><td class="val">+48%</td></tr></table></div>
+            <div class="fund-card"><h3>AAPL</h3><table><tr><td>REV</td><td class="val">$143.8B</td></tr></table></div>
+            <div class="fund-card"><h3>MSFT</h3><table><tr><td>AZURE</td><td class="val">+26%</td></tr></table></div>
+            <div class="fund-card"><h3>AMD</h3><table><tr><td>DC</td><td class="val">+60%</td></tr></table></div>
+            <div class="fund-card"><h3>TSM</h3><table><tr><td>NODE</td><td class="val">2nm</td></tr></table></div>
+            <div class="fund-card"><h3>MU</h3><table><tr><td>HBM</td><td class="val">SOLD OUT</td></tr></table></div>
         </div>
     </section>
 
     <section id="strategies">
         <h2 class="section-title">TRADING STRATEGIES</h2>
         <div class="course-modules">
+            
             <div class="module">
-                <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 1: FOUNDATIONS</h3><span>▼</span></div>
+                <div class="module-header" onclick="toggleModule(this)">
+                    <h3>MODULE 1: FOUNDATIONS</h3>
+                    <span style="color: var(--accent-gold);">▼</span>
+                </div>
                 <div class="module-content">
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank"><span>🎥 INTRODUCTION</span><span>WATCH</span></a></div>
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank"><span>🎥 MARKET STRUCTURE</span><span>WATCH</span></a></div>
+                    <div class="lesson-item">
+                        <a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank">
+                            <span>🎥 INTRODUCTION</span>
+                            <span>WATCH</span>
+                        </a>
+                    </div>
+                    <div class="lesson-item">
+                        <a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank">
+                            <span>🎥 MARKET STRUCTURE</span>
+                            <span>WATCH</span>
+                        </a>
+                    </div>
                 </div>
             </div>
+
             <div class="module">
-                <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 2: WAVE MASTERY</h3><span>▼</span></div>
+                <div class="module-header" onclick="toggleModule(this)">
+                    <h3>MODULE 2: WAVE MASTERY</h3>
+                    <span style="color: var(--accent-gold);">▼</span>
+                </div>
                 <div class="module-content">
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=bskIlCxa" target="_blank"><span>🎥 WAVE THEORY INTRO</span><span>WATCH</span></a></div>
+                    <div class="lesson-item">
+                        <a href="https://www.youtube.com/watch?v=bskIlCxa" target="_blank">
+                            <span>🎥 WAVE THEORY INTRO</span>
+                            <span>WATCH</span>
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            <div class="module">
+                <div class="module-header" onclick="toggleModule(this)">
+                    <h3>MODULE 3: TECHNICALS</h3>
+                    <span style="color: var(--accent-gold);">▼</span>
+                </div>
+                <div class="module-content">
+                    <div class="lesson-item">
+                        <a href="https://www.youtube.com/watch?v=46sRElHMfww" target="_blank">
+                            <span>🎥 TRENDLINES</span>
+                            <span>WATCH</span>
+                        </a>
+                    </div>
+                    <div class="lesson-item">
+                        <a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank">
+                            <span>🎥 FIBONACCI TECHNIQUES</span>
+                            <span>WATCH</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo" style="font-family: 'Bebas Neue'; color: #FFD700; font-size: 2rem;">HYPE CAPITAL</div>
-        <p>© 2026 HIGH YIELD PERFORMANCE EQUITY. TRADING INVOLVES RISK.</p>
+        <div class="footer-logo">HYPE CAPITAL</div>
+        <p class="footer-text">© 2026 HIGH YIELD PERFORMANCE EQUITY. TRADING INVOLVES RISK.</p>
     </footer>
 
     <script>
-        function toggleModule(header) { header.parentElement.classList.toggle('active'); }
+        function toggleModule(header) { 
+            header.parentElement.classList.toggle('active'); 
+        }
 
         async function updateTicker() {
             const ticker = document.getElementById('marketTicker');
             try {
-                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true');
+                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano&vs_currencies=usd&include_24hr_change=true');
                 const data = await res.json();
                 const coins = [
                     { n: 'BTC', p: data.bitcoin.usd, c: data.bitcoin.usd_24h_change },
                     { n: 'ETH', p: data.ethereum.usd, c: data.ethereum.usd_24h_change },
-                    { n: 'SOL', p: data.solana.usd, c: data.solana.usd_24h_change }
+                    { n: 'SOL', p: data.solana.usd, c: data.solana.usd_24h_change },
+                    { n: 'XRP', p: data.ripple.usd, c: data.ripple.usd_24h_change }
                 ];
                 const tickerItems = coins.map(i => `
                     <div class="ticker-item">
-                        <span>${i.n}/USD</span>
-                        <span>$${i.p.toLocaleString()}</span>
+                        <span>${i.n}</span>
+                        <span style="color: white;">$${i.p.toLocaleString()}</span>
                         <span class="${i.c >= 0 ? 'ticker-up' : 'ticker-down'}">${i.c.toFixed(2)}%</span>
                     </div>`).join('');
-                ticker.innerHTML = tickerItems + tickerItems;
-            } catch (e) { ticker.innerHTML = "<div>FEED OFFLINE</div>"; }
+                ticker.innerHTML = tickerItems + tickerItems + tickerItems; 
+            } catch (e) { 
+                console.log("Ticker Error"); 
+            }
         }
 
         window.addEventListener('load', () => { 
@@ -175,10 +292,10 @@
         server: '1452115058015600672',
         channel: '1452444153073111080',
         shard: 'https://e.widgetbot.io',
-        color: '#FFD700'
+        color: '#FFD700',
+        location: ['bottom', 'right']
       })
     </script>
 
 </body>
 </html>
-
