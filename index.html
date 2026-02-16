@@ -32,14 +32,14 @@
             position: fixed;
             bottom: 0;
             right: 0;
-            width: 50vw;   
-            height: 50vh;  
+            width: 50vw;    
+            height: 50vh;   
             background-image: url('bullbear.png'); 
             background-size: contain;
             background-repeat: no-repeat;
             background-position: bottom right;
-            z-index: -1;   
-            opacity: 0.2;  
+            z-index: -1;    
+            opacity: 0.2;   
             pointer-events: none;
         }
 
@@ -76,7 +76,6 @@
             justify-content: center;
             background: #050505;
             padding: 0;
-            flex-wrap: wrap;
         }
         
         .tab-btn {
@@ -90,7 +89,7 @@
             cursor: pointer;
             transition: 0.3s;
             border-bottom: 3px solid transparent;
-            min-width: 150px;
+            width: 150px;
         }
 
         .tab-btn:hover { color: #fff; }
@@ -131,7 +130,7 @@
         .widget-box:hover { border-color: var(--gold); box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); }
 
         .section-title { font-family: 'Bebas Neue'; font-size: 2rem; color: var(--gold); border-bottom: 1px solid #333; margin-bottom: 15px; padding-bottom: 5px; }
-        .chart-title { font-family: 'Bebas Neue'; font-size: 1.2rem; color: #fff; text-align: center; margin-bottom: 10px; letter-spacing: 1px; }
+        .section-subtitle { font-family: 'Manrope'; font-size: 0.9rem; color: #888; margin-bottom: 10px; margin-top: -10px; display: block; }
 
         /* --- SPECIFIC HEIGHTS --- */
         .chart-h { height: 750px; }
@@ -140,7 +139,7 @@
         .news-h { height: 600px; }
         .intel-h { height: 450px; }
 
-        /* --- GRID FOR INTEL & VALUATIONS PAGE --- */
+        /* --- GRID FOR INTEL PAGE --- */
         .grid-2 { display: flex; gap: 20px; flex-wrap: wrap; }
         .col { flex: 1; min-width: 300px; }
 
@@ -170,8 +169,8 @@
         
         <div class="nav-tabs">
             <button class="tab-btn active" onclick="openTab('warroom')">WAR ROOM</button>
-            <button class="tab-btn" onclick="openTab('intel')">INTEL</button>
             <button class="tab-btn" onclick="openTab('valuations')">VALUATIONS</button>
+            <button class="tab-btn" onclick="openTab('intel')">INTEL</button>
             <button class="tab-btn" onclick="openTab('academy')">ACADEMY</button>
         </div>
 
@@ -195,6 +194,32 @@
         </div>
     </div>
 
+    <div id="valuations" class="tab-content">
+        <h2 class="section-title">BUFFETT INDICATOR</h2>
+        <span class="section-subtitle">TOTAL STOCK MARKET VALUE / GDP</span>
+        <div class="widget-box chart-h">
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:WILL5000PR/FRED:GDP", "interval": "M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+        </div>
+
+        <h2 class="section-title">SHILLER P/E RATIO (CAPE)</h2>
+        <span class="section-subtitle">CYCLICALLY ADJUSTED PRICE-TO-EARNINGS</span>
+        <div class="widget-box flow-h">
+             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "ECONOMICS:USCASPE", "interval": "M", "timezone": "Etc/UTC", "theme": "dark", "style": "3", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+        </div>
+
+        <h2 class="section-title">YIELD CURVE MODEL</h2>
+        <span class="section-subtitle">10-YEAR MINUS 2-YEAR TREASURY YIELD (INVERSION TRACKER)</span>
+        <div class="widget-box flow-h">
+             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:T10Y2Y", "interval": "D", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+        </div>
+
+        <h2 class="section-title">MEAN REVERSION (S&P 500)</h2>
+        <span class="section-subtitle">PRICE ACTION VS 200 DAY MOVING AVERAGE</span>
+        <div class="widget-box chart-h">
+             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "AMEX:SPY", "interval": "W", "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": false, "allow_symbol_change": true, "studies": [ "MASimple@tv-basicstudies" ], "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+        </div>
+    </div>
+
     <div id="intel" class="tab-content">
         <h2 class="section-title">INTELLIGENCE HUB</h2>
         <div class="grid-2">
@@ -214,69 +239,6 @@
         <h2 class="section-title">MARKET WIRE</h2>
         <div class="widget-box news-h">
             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>{ "feedMode": "market", "market": "stock", "isTransparent": true, "displayMode": "regular", "width": "100%", "height": "100%", "colorTheme": "dark", "locale": "en" }</script></div>
-        </div>
-    </div>
-
-    <div id="valuations" class="tab-content">
-        <h2 class="section-title">CURRENT MARKET VALUATIONS</h2>
-        
-        <div class="grid-2">
-            <div class="widget-box intel-h col">
-                <div class="chart-title">MARKET FEAR / VOLATILITY (VIX)</div>
-                <div class="tradingview-widget-container" style="height:calc(100% - 30px);width:100%">
-                    <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                    { "autosize": true, "symbol": "CBOE:VIX", "interval": "W", "timezone": "Etc/UTC", "theme": "dark", "style": "3", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "hide_volume": true }
-                    </script>
-                </div>
-            </div>
-
-            <div class="widget-box intel-h col">
-                <div class="chart-title">10-YEAR TREASURY YIELD (US10Y)</div>
-                <div class="tradingview-widget-container" style="height:calc(100% - 30px);width:100%">
-                    <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                    { "autosize": true, "symbol": "TVC:US10Y", "interval": "W", "timezone": "Etc/UTC", "theme": "dark", "style": "3", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "hide_volume": true }
-                    </script>
-                </div>
-            </div>
-
-            <div class="widget-box intel-h col">
-                <div class="chart-title">U.S. DOLLAR INDEX (DXY)</div>
-                <div class="tradingview-widget-container" style="height:calc(100% - 30px);width:100%">
-                    <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                    { "autosize": true, "symbol": "TVC:DXY", "interval": "W", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "hide_volume": true }
-                    </script>
-                </div>
-            </div>
-
-            <div class="widget-box intel-h col">
-                <div class="chart-title">MEAN REVERSION (S&P 500)</div>
-                <div class="tradingview-widget-container" style="height:calc(100% - 30px);width:100%">
-                    <div class="tradingview-widget-container__widget" style="height:100%;width:100%"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                    { "autosize": true, "symbol": "SP:SPX", "interval": "W", "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_top_toolbar": true, "hide_legend": true, "save_image": false, "hide_volume": true, "studies": [ "STD;Bollinger_Bands" ] }
-                    </script>
-                </div>
-            </div>
-        </div>
-        
-        <h2 class="section-title">GLOBAL MACRO OVERVIEW</h2>
-        <div class="widget-box flow-h">
-             <div class="tradingview-widget-container" style="height:100%;width:100%">
-                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                {
-                  "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "en", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "showFloatingTooltip": false, "width": "100%", "height": "100%",
-                  "tabs": [
-                    { "title": "Indices", "symbols": [ { "s": "FOREXCOM:SPXUSD", "d": "S&P 500" }, { "s": "FOREXCOM:NSXUSD", "d": "US 100" }, { "s": "FOREXCOM:DJI", "d": "Dow 30" }, { "s": "INDEX:NKY", "d": "Nikkei 225" } ] },
-                    { "title": "Bonds", "symbols": [ { "s": "CME_MINI:SR31!", "d": "SOFR" }, { "s": "CBOT:ZB1!", "d": "T-Bond" }, { "s": "CBOT:UB1!", "d": "Ultra T-Bond" }, { "s": "EUREX:FGBL1!", "d": "Euro Bund" } ] },
-                    { "title": "Commodities", "symbols": [ { "s": "CME_MINI:ES1!", "d": "S&P 500" }, { "s": "CME:6E1!", "d": "Euro" }, { "s": "COMEX:GC1!", "d": "Gold" }, { "s": "NYMEX:CL1!", "d": "WTI Crude Oil" } ] }
-                  ]
-                }
-                </script>
-            </div>
         </div>
     </div>
 
@@ -324,7 +286,12 @@
             }
             // 3. Show specific tab and activate button
             document.getElementById(tabName).classList.add("active");
-            event.currentTarget.classList.add("active");
+            // Match the button click to the tab name logic if needed, or simply find the button
+            // Since onclick passes 'valuations', we need to highlight the button that called this.
+            // The logic below assumes the click event target is the button.
+            if(event) {
+                event.currentTarget.classList.add("active");
+            }
         }
 
         function toggleModule(header) { 
