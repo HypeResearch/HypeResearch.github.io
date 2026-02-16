@@ -121,7 +121,7 @@
             transition: box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .heatmap-wrapper { height: 800px; }
-        .news-wrapper { height: 500px; } /* Height for the News Feed */
+        .news-wrapper { height: 600px; }
 
         .heatmap-wrapper:hover, .news-wrapper:hover {
             box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
@@ -212,30 +212,10 @@
                     <span style="color: var(--accent-gold);">▼</span>
                 </div>
                 <div class="module-content">
-                    <div class="lesson-item">
-                        <a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank">
-                            <span>🎥 INTRODUCTION</span>
-                            <span>WATCH</span>
-                        </a>
-                    </div>
-                    <div class="lesson-item">
-                        <a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank">
-                            <span>🎥 MARKET STRUCTURE</span>
-                            <span>WATCH</span>
-                        </a>
-                    </div>
-                    <div class="lesson-item">
-                        <a href="https://www.youtube.com/watch?v=46sRElHMfww" target="_blank">
-                            <span>🎥 TRENDLINES</span>
-                            <span>WATCH</span>
-                        </a>
-                    </div>
-                    <div class="lesson-item">
-                        <a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank">
-                            <span>🎥 FIBONACCI TECHNIQUES</span>
-                            <span>WATCH</span>
-                        </a>
-                    </div>
+                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank"><span>🎥 INTRODUCTION</span><span>WATCH</span></a></div>
+                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank"><span>🎥 MARKET STRUCTURE</span><span>WATCH</span></a></div>
+                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=46sRElHMfww" target="_blank"><span>🎥 TRENDLINES</span><span>WATCH</span></a></div>
+                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank"><span>🎥 FIBONACCI TECHNIQUES</span><span>WATCH</span></a></div>
                 </div>
             </div>
 
@@ -245,12 +225,7 @@
                     <span style="color: var(--accent-gold);">▼</span>
                 </div>
                 <div class="module-content">
-                    <div class="lesson-item">
-                        <a href="https://www.youtube.com/watch?v=9gM2V6n5b8M" target="_blank">
-                            <span>🎥 WAVE THEORY INTRO</span>
-                            <span>WATCH</span>
-                        </a>
-                    </div>
+                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=9gM2V6n5b8M" target="_blank"><span>🎥 WAVE THEORY INTRO</span><span>WATCH</span></a></div>
                 </div>
             </div>
 
@@ -260,12 +235,7 @@
                     <span style="color: var(--accent-gold);">▼</span>
                 </div>
                 <div class="module-content">
-                    <div class="lesson-item">
-                        <a href="#">
-                            <span>🎥 COMING SOON</span>
-                            <span>LOCKED</span>
-                        </a>
-                    </div>
+                    <div class="lesson-item"><a href="#"><span>🎥 COMING SOON</span><span>LOCKED</span></a></div>
                 </div>
             </div>
 
@@ -276,3 +246,111 @@
         <h2 class="section-title">SECTOR ETF HEATMAP</h2>
         <div class="heatmap-wrapper">
             <div class="tradingview-widget-container" style="height:100%;width:100%">
+                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-etf-heatmap.js" async>
+                {
+                  "dataSource": "AllUSEtf",
+                  "grouping": "sector",
+                  "blockSize": "aum",
+                  "blockColor": "change",
+                  "locale": "en",
+                  "symbolUrl": "",
+                  "colorTheme": "dark",
+                  "hasTopBar": false,
+                  "isDatasetEnabled": false,
+                  "isTransparent": true,
+                  "width": "100%",
+                  "height": "100%"
+                }
+                </script>
+            </div>
+            </div>
+    </section>
+
+    <section id="news-wire">
+        <h2 class="section-title">MARKET EVENTS</h2>
+        <div class="news-wrapper">
+            <div class="tradingview-widget-container" style="height:100%;width:100%">
+                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
+                {
+                  "feedMode": "market",
+                  "market": "stock",
+                  "isTransparent": true,
+                  "displayMode": "regular",
+                  "width": "100%",
+                  "height": "100%",
+                  "colorTheme": "dark",
+                  "locale": "en"
+                }
+                </script>
+            </div>
+            </div>
+    </section>
+
+    <section id="report">
+        <h2 class="section-title">MARKET REPORT</h2>
+        <div class="fundamentals-container">
+            <div class="fund-card"><h3>SPY</h3><table><tr><td>NAV</td><td class="val">$681.29</td></tr></table></div>
+            <div class="fund-card"><h3>NVDA</h3><table><tr><td>PE</td><td class="val">37.06x</td></tr></table></div>
+            <div class="fund-card"><h3>AVGO</h3><table><tr><td>YIELD</td><td class="val">1.41%</td></tr></table></div>
+            <div class="fund-card"><h3>GOOGL</h3><table><tr><td>CLOUD</td><td class="val">+48%</td></tr></table></div>
+            <div class="fund-card"><h3>AAPL</h3><table><tr><td>REV</td><td class="val">$143.8B</td></tr></table></div>
+            <div class="fund-card"><h3>MSFT</h3><table><tr><td>AZURE</td><td class="val">+26%</td></tr></table></div>
+            <div class="fund-card"><h3>AMD</h3><table><tr><td>DC</td><td class="val">+60%</td></tr></table></div>
+            <div class="fund-card"><h3>TSM</h3><table><tr><td>NODE</td><td class="val">2nm</td></tr></table></div>
+            <div class="fund-card"><h3>MU</h3><table><tr><td>HBM</td><td class="val">SOLD OUT</td></tr></table></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">HYPE CAPITAL</div>
+        <p class="footer-text">© 2026 HIGH YIELD PERFORMANCE EQUITY. TRADING INVOLVES RISK.</p>
+    </footer>
+
+    <script>
+        function toggleModule(header) { 
+            header.parentElement.classList.toggle('active'); 
+        }
+
+        async function updateTicker() {
+            const ticker = document.getElementById('marketTicker');
+            try {
+                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano&vs_currencies=usd&include_24hr_change=true');
+                const data = await res.json();
+                const coins = [
+                    { n: 'BTC', p: data.bitcoin.usd, c: data.bitcoin.usd_24h_change },
+                    { n: 'ETH', p: data.ethereum.usd, c: data.ethereum.usd_24h_change },
+                    { n: 'SOL', p: data.solana.usd, c: data.solana.usd_24h_change },
+                    { n: 'XRP', p: data.ripple.usd, c: data.ripple.usd_24h_change }
+                ];
+                const tickerItems = coins.map(i => `
+                    <div class="ticker-item">
+                        <span>${i.n}</span>
+                        <span style="color: white;">$${i.p.toLocaleString()}</span>
+                        <span class="${i.c >= 0 ? 'ticker-up' : 'ticker-down'}">${i.c.toFixed(2)}%</span>
+                    </div>`).join('');
+                ticker.innerHTML = tickerItems + tickerItems + tickerItems; 
+            } catch (e) { 
+                console.log("Ticker Error"); 
+            }
+        }
+
+        window.addEventListener('load', () => { 
+            updateTicker(); 
+            setInterval(updateTicker, 60000); 
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+      new Crate({
+        server: '1452115058015600672',
+        channel: '1452444153073111080',
+        shard: 'https://e.widgetbot.io',
+        color: '#FFD700',
+        location: ['bottom', 'right']
+      })
+    </script>
+
+</body>
+</html>
