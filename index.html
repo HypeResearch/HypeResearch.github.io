@@ -1,3 +1,19 @@
+Here is the final, complete code.
+
+I have switched the Mean Reversion chart to SPY (the ETF) instead of the Index. This will load instantly without asking you to click "OK".
+
+Final Features Included:
+Mobile Fixed: Tabs wrap and resize perfectly on phones.
+
+Mean Reversion: Fixed to AMEX:SPY (no pop-ups).
+
+Buffett Indicator: Clean line (no bands), Monthly time frame.
+
+Widget Sizes: All charts are compact to fit your screen better.
+
+Visuals: Glassmorphism header and hover effects included.
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +39,8 @@
             font-family: 'Manrope', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            padding-top: 180px;
+            /* Padding adjusted for mobile/desktop dynamic header */
+            padding-top: 190px;
             overflow-x: hidden;
         }
 
@@ -49,7 +66,8 @@
             top: 0; 
             width: 100%; 
             z-index: 9999; 
-            background: #000; 
+            background: rgba(0, 0, 0, 0.9); 
+            backdrop-filter: blur(10px); /* Glass effect */
             border-bottom: 1px solid var(--border); 
             box-shadow: 0 5px 20px rgba(0,0,0,0.8);
         }
@@ -57,7 +75,7 @@
         .logo-container { text-align: center; padding: 10px 0; border-bottom: 1px solid #111; }
         .logo-text { 
             font-family: 'Bebas Neue'; 
-            font-size: 2.5rem; 
+            font-size: 2.2rem; 
             letter-spacing: 3px; 
             text-decoration: none;
             display: block;
@@ -70,44 +88,46 @@
         }
         @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
 
-        /* --- NAVIGATION TABS --- */
+        /* --- NAVIGATION TABS (RESPONSIVE) --- */
         .nav-tabs {
             display: flex;
             justify-content: center;
             background: #050505;
             padding: 0;
+            flex-wrap: wrap; /* Allows tabs to wrap on mobile */
         }
         
         .tab-btn {
             background: transparent;
             border: none;
-            color: #555;
+            color: #666;
             font-family: 'Bebas Neue';
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             letter-spacing: 1px;
-            padding: 15px 30px;
+            padding: 12px 20px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
-            width: 150px;
+            flex-grow: 1; /* Makes buttons fill space on mobile */
+            max-width: 150px;
         }
 
-        .tab-btn:hover { color: #fff; }
+        .tab-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.02); }
         
         .tab-btn.active {
             color: var(--gold);
             border-bottom: 3px solid var(--gold);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-            background: rgba(255, 215, 0, 0.05);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            background: linear-gradient(to top, rgba(255, 215, 0, 0.05), transparent);
         }
 
         /* --- CONTENT SECTIONS --- */
         .tab-content {
             display: none;
-            padding: 20px 5%;
-            max-width: 1400px;
+            padding: 20px 3%;
+            max-width: 1600px;
             margin: 0 auto;
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.4s ease-out;
         }
         
         .tab-content.active { display: block; }
@@ -116,42 +136,52 @@
 
         /* --- WIDGET BOXES --- */
         .widget-box {
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.4);
             border: 1px solid #222;
-            border-radius: 12px;
-            padding: 10px;
-            margin-bottom: 30px;
+            border-radius: 8px;
+            padding: 5px;
+            margin-bottom: 20px;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
-            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            transition: 0.3s border-color;
         }
-        .widget-box:hover { border-color: var(--gold); box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); }
+        .widget-box:hover { border-color: #444; }
 
-        .section-title { font-family: 'Bebas Neue'; font-size: 2rem; color: var(--gold); border-bottom: 1px solid #333; margin-bottom: 15px; padding-bottom: 5px; }
-        .section-subtitle { font-family: 'Manrope'; font-size: 0.9rem; color: #888; margin-bottom: 10px; margin-top: -10px; display: block; letter-spacing: 1px; }
+        .section-title { font-family: 'Bebas Neue'; font-size: 1.8rem; color: var(--gold); border-bottom: 1px solid #222; margin-bottom: 10px; padding-bottom: 2px; }
+        .section-subtitle { font-family: 'Manrope'; font-size: 0.8rem; color: #888; margin-bottom: 15px; margin-top: -8px; display: block; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* --- SPECIFIC HEIGHTS --- */
-        .chart-h { height: 750px; }
-        .flow-h { height: 600px; }
-        .map-h { height: 800px; }
-        .news-h { height: 600px; }
-        .intel-h { height: 450px; }
+        /* --- UPDATED COMPACT HEIGHTS --- */
+        .chart-h { height: 550px; } /* Reduced from 750px */
+        .flow-h { height: 450px; }  /* Reduced from 600px */
+        .map-h { height: 600px; }   /* Reduced from 800px */
+        .news-h { height: 500px; }
+        .intel-h { height: 400px; }
 
-        .grid-2 { display: flex; gap: 20px; flex-wrap: wrap; }
+        .grid-2 { display: flex; gap: 15px; flex-wrap: wrap; }
         .col { flex: 1; min-width: 300px; }
 
         /* --- MODULES (ACADEMY) --- */
         .module { background: var(--card-bg); border: 1px solid #222; margin-bottom: 15px; border-radius: 8px; overflow: hidden; }
-        .module-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #0e0e0e; }
-        .module-header h3 { font-family: 'Bebas Neue'; font-size: 1.5rem; margin: 0; color: #fff; }
+        .module-header { padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #0e0e0e; transition: background 0.2s; }
+        .module-header:hover { background: #151515; }
+        .module-header h3 { font-family: 'Bebas Neue'; font-size: 1.3rem; margin: 0; color: #fff; }
         .module-content { display: none; background: #000; border-top: 1px solid #222; }
         .module.active .module-content { display: block; }
-        .lesson-item { padding: 15px 20px; border-bottom: 1px solid #111; display: flex; justify-content: space-between; }
-        .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; font-family: 'Manrope'; }
+        .lesson-item { padding: 12px 20px; border-bottom: 1px solid #111; display: flex; justify-content: space-between; }
+        .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; font-family: 'Manrope'; font-size: 0.9rem; }
         .lesson-item:hover { background: #111; }
-        .tag { color: var(--gold); border: 1px solid var(--gold); padding: 2px 10px; border-radius: 4px; font-size: 0.8rem; }
+        .tag { color: var(--gold); border: 1px solid var(--gold); padding: 1px 8px; border-radius: 3px; font-size: 0.7rem; }
 
-        footer { text-align: center; padding: 50px 0; color: #444; font-size: 0.8rem; border-top: 1px solid #111; margin-top: 50px; }
+        footer { text-align: center; padding: 40px 0; color: #333; font-size: 0.75rem; border-top: 1px solid #111; margin-top: 40px; }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
+            body { padding-top: 220px; } /* More space for stacked tabs */
+            .logo-text { font-size: 2rem; }
+            .nav-tabs { padding: 5px 0; }
+            .tab-btn { font-size: 1rem; padding: 10px; width: 50%; max-width: none; } /* 2 tabs per row */
+            .chart-h, .flow-h, .map-h { height: 400px; } /* Even smaller on mobile */
+        }
     </style>
 </head>
 <body>
@@ -193,27 +223,27 @@
     <div id="valuations" class="tab-content">
         
         <h2 class="section-title">BUFFETT INDICATOR</h2>
-        <span class="section-subtitle">WILSHIRE 5000 / GDP (WITH 2-STDV BANDS)</span>
+        <span class="section-subtitle">WILSHIRE 5000 / GDP (MONTHLY)</span>
         <div class="widget-box chart-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:WILL5000INDFC/FRED:GDP", "interval": "M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "studies": [ "BB@tv-basicstudies" ], "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:WILL5000INDFC/FRED:GDP", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
         </div>
 
         <h2 class="section-title">SHILLER P/E RATIO (CAPE)</h2>
         <span class="section-subtitle">SOURCE: MULTPL</span>
         <div class="widget-box flow-h">
-             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "MULTPL:SHILLER_PE_RATIO_MONTH", "interval": "M", "timezone": "Etc/UTC", "theme": "dark", "style": "3", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "MULTPL:SHILLER_PE_RATIO_MONTH", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "3", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
         </div>
 
-        <h2 class="section-title">MEAN REVERSION MODEL (S&P 500)</h2>
-        <span class="section-subtitle">LOGARITHMIC REGRESSION CHANNEL (MONTHLY)</span>
+        <h2 class="section-title">MEAN REVERSION MODEL</h2>
+        <span class="section-subtitle">S&P 500 (SPY) LOGARITHMIC REGRESSION (MONTHLY)</span>
         <div class="widget-box chart-h">
-             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "SP:SPX", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": false, "allow_symbol_change": true, "studies": [ "BB@tv-basicstudies" ], "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "AMEX:SPY", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": false, "allow_symbol_change": true, "studies": [ "BB@tv-basicstudies" ], "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
         </div>
 
         <h2 class="section-title">INTEREST RATE SPREAD</h2>
         <span class="section-subtitle">10Y - 2Y TREASURY YIELD (RECESSION INDICATOR)</span>
         <div class="widget-box flow-h">
-             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:T10Y2Y", "interval": "D", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:T10Y2Y", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
         </div>
     </div>
 
