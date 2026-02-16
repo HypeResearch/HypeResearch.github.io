@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -141,34 +140,10 @@
         .map-h { height: 600px; }   
         .news-h { height: 500px; }
         .intel-h { height: 400px; }
+        .mini-h  { height: 250px; } /* New small height for the status card */
 
         .grid-2 { display: flex; gap: 15px; flex-wrap: wrap; }
         .col { flex: 1; min-width: 300px; }
-
-        /* --- BUFFETT EQUATION STYLES --- */
-        .buffett-equation-box {
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-family: 'Manrope', sans-serif;
-            text-align: center;
-        }
-
-        .eq-label { font-size: 1.5rem; color: #fff; font-weight: 600; }
-        .eq-fraction { display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 10px; }
-        .eq-top { border-bottom: 2px solid #fff; padding-bottom: 5px; margin-bottom: 5px; width: 100%; }
-        .eq-bottom { padding-top: 5px; width: 100%; }
-        .eq-equals { font-size: 2rem; color: #fff; margin: 0 10px; }
-        
-        /* Using TradingView mini widgets for the values */
-        .tv-mini-val { height: 40px; width: 150px; overflow: hidden; pointer-events: none; }
 
         /* --- MODULES (ACADEMY) --- */
         .module { background: var(--card-bg); border: 1px solid #222; margin-bottom: 15px; border-radius: 8px; overflow: hidden; }
@@ -190,7 +165,6 @@
             .nav-tabs { padding: 5px 0; }
             .tab-btn { font-size: 1rem; padding: 10px; width: 50%; max-width: none; }
             .chart-h, .flow-h, .map-h { height: 400px; }
-            .buffett-equation-box { flex-direction: column; gap: 10px; }
         }
     </style>
 </head>
@@ -233,40 +207,14 @@
     <div id="valuations" class="tab-content">
         
         <h2 class="section-title">BUFFETT INDICATOR</h2>
-        <span class="section-subtitle">LIVE RATIO (DATA FROM FEDERAL RESERVE)</span>
+        <span class="section-subtitle">LIVE RATIO (%)</span>
         
-        <div class="buffett-equation-box">
-            <div class="eq-label">Buffett Indicator = </div>
-            
-            <div class="eq-fraction">
-                <div class="eq-top">
-                    <div style="font-size:0.8rem; color:#888;">Total Market Value ($B)</div>
-                    <div class="tv-mini-val">
-                        <div class="tradingview-widget-container">
-                            <div class="tradingview-widget-container__widget"></div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "FRED:WILL5000INDFC", "width": "150", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-                <div class="eq-bottom">
-                    <div class="tv-mini-val">
-                        <div class="tradingview-widget-container">
-                            <div class="tradingview-widget-container__widget"></div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "FRED:GDP", "width": "150", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
-                            </script>
-                        </div>
-                    </div>
-                    <div style="font-size:0.8rem; color:#888;">Annualized GDP ($B)</div>
-                </div>
-            </div>
-
-            </div>
+        <div class="widget-box mini-h">
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{ "symbol": "(FRED:NCBEILQ027S+FRED:FBCEILQ027S)/FRED:GDP*100", "width": "100%", "height": "100%", "locale": "en", "dateRange": "12M", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": "" }</script></div>
+        </div>
 
         <div class="widget-box chart-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:WILL5000INDFC/FRED:GDP*100", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "(FRED:NCBEILQ027S+FRED:FBCEILQ027S)/FRED:GDP*100", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
         </div>
 
         <h2 class="section-title">SHILLER P/E RATIO (CAPE)</h2>
