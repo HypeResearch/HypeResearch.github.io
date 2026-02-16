@@ -23,7 +23,7 @@
             font-family: 'Manrope', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            padding-top: 180px; /* Space for Header + Tabs */
+            padding-top: 180px;
             overflow-x: hidden;
         }
 
@@ -101,18 +101,16 @@
             background: rgba(255, 215, 0, 0.05);
         }
 
-        /* --- CONTENT SECTIONS (HIDDEN BY DEFAULT) --- */
+        /* --- CONTENT SECTIONS --- */
         .tab-content {
-            display: none; /* Hide all tabs */
+            display: none;
             padding: 20px 5%;
             max-width: 1400px;
             margin: 0 auto;
             animation: fadeIn 0.5s ease-out;
         }
         
-        .tab-content.active {
-            display: block; /* Show active tab */
-        }
+        .tab-content.active { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -130,7 +128,7 @@
         .widget-box:hover { border-color: var(--gold); box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); }
 
         .section-title { font-family: 'Bebas Neue'; font-size: 2rem; color: var(--gold); border-bottom: 1px solid #333; margin-bottom: 15px; padding-bottom: 5px; }
-        .section-subtitle { font-family: 'Manrope'; font-size: 0.9rem; color: #888; margin-bottom: 10px; margin-top: -10px; display: block; }
+        .section-subtitle { font-family: 'Manrope'; font-size: 0.9rem; color: #888; margin-bottom: 10px; margin-top: -10px; display: block; letter-spacing: 1px; }
 
         /* --- SPECIFIC HEIGHTS --- */
         .chart-h { height: 750px; }
@@ -139,7 +137,6 @@
         .news-h { height: 600px; }
         .intel-h { height: 450px; }
 
-        /* --- GRID FOR INTEL PAGE --- */
         .grid-2 { display: flex; gap: 20px; flex-wrap: wrap; }
         .col { flex: 1; min-width: 300px; }
 
@@ -154,7 +151,6 @@
         .lesson-item:hover { background: #111; }
         .tag { color: var(--gold); border: 1px solid var(--gold); padding: 2px 10px; border-radius: 4px; font-size: 0.8rem; }
 
-        /* --- FOOTER --- */
         footer { text-align: center; padding: 50px 0; color: #444; font-size: 0.8rem; border-top: 1px solid #111; margin-top: 50px; }
     </style>
 </head>
@@ -195,28 +191,29 @@
     </div>
 
     <div id="valuations" class="tab-content">
+        
         <h2 class="section-title">BUFFETT INDICATOR</h2>
-        <span class="section-subtitle">TOTAL STOCK MARKET VALUE / GDP</span>
+        <span class="section-subtitle">WILSHIRE 5000 / GDP (WITH 2-STDV BANDS)</span>
         <div class="widget-box chart-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:WILL5000PR/FRED:GDP", "interval": "M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:WILL5000INDFC/FRED:GDP", "interval": "M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "studies": [ "BB@tv-basicstudies" ], "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
         </div>
 
         <h2 class="section-title">SHILLER P/E RATIO (CAPE)</h2>
-        <span class="section-subtitle">CYCLICALLY ADJUSTED PRICE-TO-EARNINGS</span>
+        <span class="section-subtitle">SOURCE: MULTPL</span>
         <div class="widget-box flow-h">
-             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "ECONOMICS:USCASPE", "interval": "M", "timezone": "Etc/UTC", "theme": "dark", "style": "3", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "MULTPL:SHILLER_PE_RATIO_MONTH", "interval": "M", "timezone": "Etc/UTC", "theme": "dark", "style": "3", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
         </div>
 
-        <h2 class="section-title">YIELD CURVE MODEL</h2>
-        <span class="section-subtitle">10-YEAR MINUS 2-YEAR TREASURY YIELD (INVERSION TRACKER)</span>
+        <h2 class="section-title">MEAN REVERSION MODEL (S&P 500)</h2>
+        <span class="section-subtitle">LOGARITHMIC REGRESSION CHANNEL (MONTHLY)</span>
+        <div class="widget-box chart-h">
+             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "SP:SPX", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": false, "allow_symbol_change": true, "studies": [ "BB@tv-basicstudies" ], "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+        </div>
+
+        <h2 class="section-title">INTEREST RATE SPREAD</h2>
+        <span class="section-subtitle">10Y - 2Y TREASURY YIELD (RECESSION INDICATOR)</span>
         <div class="widget-box flow-h">
              <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:T10Y2Y", "interval": "D", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
-        </div>
-
-        <h2 class="section-title">MEAN REVERSION (S&P 500)</h2>
-        <span class="section-subtitle">PRICE ACTION VS 200 DAY MOVING AVERAGE</span>
-        <div class="widget-box chart-h">
-             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "AMEX:SPY", "interval": "W", "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": false, "allow_symbol_change": true, "studies": [ "MASimple@tv-basicstudies" ], "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
         </div>
     </div>
 
@@ -286,9 +283,6 @@
             }
             // 3. Show specific tab and activate button
             document.getElementById(tabName).classList.add("active");
-            // Match the button click to the tab name logic if needed, or simply find the button
-            // Since onclick passes 'valuations', we need to highlight the button that called this.
-            // The logic below assumes the click event target is the button.
             if(event) {
                 event.currentTarget.classList.add("active");
             }
