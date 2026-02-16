@@ -14,7 +14,6 @@
             --gold: #FFD700;
             --text: #ffffff;
             --border: #222222;
-            --danger: #ff4444; 
         }
 
         /* --- RESET & BASIC SETUP --- */
@@ -51,7 +50,7 @@
             width: 100%; 
             z-index: 9999; 
             background: rgba(0, 0, 0, 0.9); 
-            backdrop-filter: blur(10px); /* Glass effect */
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border); 
             box-shadow: 0 5px 20px rgba(0,0,0,0.8);
         }
@@ -140,7 +139,9 @@
         .map-h { height: 600px; }   
         .news-h { height: 500px; }
         .intel-h { height: 400px; }
-        .mini-h  { height: 250px; } /* New small height for the status card */
+        
+        /* New Auto-Height for images so they don't stretch */
+        .img-box { height: auto; min-height: 200px; padding: 0; }
 
         .grid-2 { display: flex; gap: 15px; flex-wrap: wrap; }
         .col { flex: 1; min-width: 300px; }
@@ -209,12 +210,12 @@
         <h2 class="section-title">BUFFETT INDICATOR</h2>
         <span class="section-subtitle">LIVE RATIO (%)</span>
         
-        <div class="widget-box mini-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>{ "symbol": "(FRED:NCBEILQ027S+FRED:FBCEILQ027S)/FRED:GDP*100", "width": "100%", "height": "100%", "locale": "en", "dateRange": "12M", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": "" }</script></div>
+        <div class="widget-box img-box">
+            <img src="buffett-score.png" alt="Buffett Indicator Score" style="width: 100%; height: 100%; object-fit: contain; display: block;">
         </div>
 
-        <div class="widget-box chart-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "(FRED:NCBEILQ027S+FRED:FBCEILQ027S)/FRED:GDP*100", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+        <div class="widget-box img-box">
+             <img src="buffett-chart.png" alt="Buffett Indicator Chart" style="width: 100%; height: 100%; object-fit: contain; display: block;">
         </div>
 
         <h2 class="section-title">SHILLER P/E RATIO (CAPE)</h2>
