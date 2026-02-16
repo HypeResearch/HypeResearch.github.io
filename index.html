@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,18 +101,16 @@
             background: rgba(255, 215, 0, 0.05);
         }
 
-        /* --- CONTENT SECTIONS (HIDDEN BY DEFAULT) --- */
+        /* --- CONTENT SECTIONS --- */
         .tab-content {
-            display: none; /* Hide all tabs */
+            display: none; 
             padding: 20px 5%;
             max-width: 1400px;
             margin: 0 auto;
             animation: fadeIn 0.5s ease-out;
         }
         
-        .tab-content.active {
-            display: block; /* Show active tab */
-        }
+        .tab-content.active { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -133,9 +130,8 @@
         .section-title { font-family: 'Bebas Neue'; font-size: 2rem; color: var(--gold); border-bottom: 1px solid #333; margin-bottom: 15px; padding-bottom: 5px; }
 
         /* --- SPECIFIC HEIGHTS --- */
-        .chart-h { height: 750px; }
         .flow-h { height: 600px; }
-        .map-h { height: 800px; }
+        .sector-h { height: 600px; } /* Height for Sector List */
         .news-h { height: 600px; }
         .intel-h { height: 450px; }
 
@@ -168,9 +164,8 @@
         </div>
         
         <div class="nav-tabs">
-            <button class="tab-btn active" onclick="openTab('warroom')">WAR ROOM</button>
+            <button class="tab-btn active" onclick="openTab('academy')">ACADEMY</button>
             <button class="tab-btn" onclick="openTab('intel')">INTEL</button>
-            <button class="tab-btn" onclick="openTab('academy')">ACADEMY</button>
         </div>
 
         <div class="tradingview-widget-container" style="height: 46px; border-bottom: 1px solid var(--gold);">
@@ -181,41 +176,7 @@
         </div>
     </header>
 
-    <div id="warroom" class="tab-content active">
-        <h2 class="section-title">WAR ROOM CHART</h2>
-        <div class="widget-box chart-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "AMEX:SPY", "interval": "D", "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": false, "allow_symbol_change": true, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
-        </div>
-
-        <h2 class="section-title">CAPITAL FLOW TRACKER</h2>
-        <div class="widget-box flow-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>{ "colorTheme": "dark", "dateRange": "12M", "exchange": "US", "showChart": true, "locale": "en", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "width": "100%", "height": "100%" }</script></div>
-        </div>
-    </div>
-
-    <div id="intel" class="tab-content">
-        <h2 class="section-title">INTELLIGENCE HUB</h2>
-        <div class="grid-2">
-            <div class="widget-box intel-h col">
-                <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{ "interval": "1D", "width": "100%", "isTransparent": true, "height": "100%", "symbol": "AMEX:SPY", "showIntervalTabs": true, "displayMode": "single", "locale": "en", "colorTheme": "dark" }</script></div>
-            </div>
-            <div class="widget-box intel-h col">
-                <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>{ "colorTheme": "dark", "isTransparent": true, "width": "100%", "height": "100%", "locale": "en", "importanceFilter": "0,1", "currencyFilter": "USD" }</script></div>
-            </div>
-        </div>
-
-        <h2 class="section-title">SECTOR HEATMAP</h2>
-        <div class="widget-box map-h">
-             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-etf-heatmap.js" async>{ "dataSource": "AllUSEtf", "grouping": "sector", "blockSize": "aum", "blockColor": "change", "locale": "en", "symbolUrl": "", "colorTheme": "dark", "hasTopBar": false, "isDatasetEnabled": false, "isTransparent": true, "width": "100%", "height": "100%" }</script></div>
-        </div>
-
-        <h2 class="section-title">MARKET WIRE</h2>
-        <div class="widget-box news-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>{ "feedMode": "market", "market": "stock", "isTransparent": true, "displayMode": "regular", "width": "100%", "height": "100%", "colorTheme": "dark", "locale": "en" }</script></div>
-        </div>
-    </div>
-
-    <div id="academy" class="tab-content">
+    <div id="academy" class="tab-content active">
         <h2 class="section-title">TRADING STRATEGIES</h2>
         
         <div class="module">
@@ -240,6 +201,63 @@
             <div class="module-content">
                 <div class="lesson-item"><a href="#"><span>🎥 COMING SOON</span><span class="tag">LOCKED</span></a></div>
             </div>
+        </div>
+    </div>
+
+    <div id="intel" class="tab-content">
+        
+        <h2 class="section-title">CAPITAL FLOW TRACKER</h2>
+        <div class="widget-box flow-h">
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>{ "colorTheme": "dark", "dateRange": "12M", "exchange": "US", "showChart": true, "locale": "en", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "width": "100%", "height": "100%" }</script></div>
+        </div>
+
+        <h2 class="section-title">INTELLIGENCE HUB</h2>
+        <div class="grid-2">
+            <div class="widget-box intel-h col">
+                <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{ "interval": "1D", "width": "100%", "isTransparent": true, "height": "100%", "symbol": "AMEX:SPY", "showIntervalTabs": true, "displayMode": "single", "locale": "en", "colorTheme": "dark" }</script></div>
+            </div>
+            <div class="widget-box intel-h col">
+                <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>{ "colorTheme": "dark", "isTransparent": true, "width": "100%", "height": "100%", "locale": "en", "importanceFilter": "0,1", "currencyFilter": "USD" }</script></div>
+            </div>
+        </div>
+
+        <h2 class="section-title">SECTOR PERFORMANCE</h2>
+        <div class="widget-box sector-h">
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
+            {
+            "width": "100%",
+            "height": "100%",
+            "symbolsGroups": [
+                {
+                "name": "S&P 500 SECTORS",
+                "symbols": [
+                    { "name": "AMEX:SPY", "displayName": "S&P 500 (MARKET)" },
+                    { "name": "AMEX:XLK", "displayName": "TECHNOLOGY" },
+                    { "name": "AMEX:XLF", "displayName": "FINANCIALS" },
+                    { "name": "AMEX:XLV", "displayName": "HEALTHCARE" },
+                    { "name": "AMEX:XLY", "displayName": "CONSUMER DISCRETIONARY" },
+                    { "name": "AMEX:XLC", "displayName": "COMMUNICATION (VOX)" },
+                    { "name": "AMEX:XLI", "displayName": "INDUSTRIALS" },
+                    { "name": "AMEX:XLP", "displayName": "CONSUMER STAPLES" },
+                    { "name": "AMEX:XLE", "displayName": "ENERGY" },
+                    { "name": "AMEX:XLU", "displayName": "UTILITIES" },
+                    { "name": "AMEX:XLB", "displayName": "MATERIALS" }
+                ]
+                }
+            ],
+            "showSymbolLogo": true,
+            "isTransparent": true,
+            "colorTheme": "dark",
+            "locale": "en"
+            }
+            </script>
+            </div>
+        </div>
+
+        <h2 class="section-title">MARKET WIRE</h2>
+        <div class="widget-box news-h">
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>{ "feedMode": "market", "market": "stock", "isTransparent": true, "displayMode": "regular", "width": "100%", "height": "100%", "colorTheme": "dark", "locale": "en" }</script></div>
         </div>
     </div>
 
