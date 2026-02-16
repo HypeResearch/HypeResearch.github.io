@@ -25,7 +25,6 @@
             font-family: 'Manrope', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            /* Padding adjusted for mobile/desktop dynamic header */
             padding-top: 190px;
             overflow-x: hidden;
         }
@@ -74,13 +73,13 @@
         }
         @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
 
-        /* --- NAVIGATION TABS (RESPONSIVE) --- */
+        /* --- NAVIGATION TABS --- */
         .nav-tabs {
             display: flex;
             justify-content: center;
             background: #050505;
             padding: 0;
-            flex-wrap: wrap; /* Allows tabs to wrap on mobile */
+            flex-wrap: wrap; 
         }
         
         .tab-btn {
@@ -94,7 +93,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
-            flex-grow: 1; /* Makes buttons fill space on mobile */
+            flex-grow: 1; 
             max-width: 150px;
         }
 
@@ -136,7 +135,7 @@
         .section-title { font-family: 'Bebas Neue'; font-size: 1.8rem; color: var(--gold); border-bottom: 1px solid #222; margin-bottom: 10px; padding-bottom: 2px; }
         .section-subtitle { font-family: 'Manrope'; font-size: 0.8rem; color: #888; margin-bottom: 15px; margin-top: -8px; display: block; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* --- UPDATED COMPACT HEIGHTS --- */
+        /* --- HEIGHTS --- */
         .chart-h { height: 550px; } 
         .flow-h { height: 450px; }  
         .map-h { height: 600px; }   
@@ -146,19 +145,7 @@
         .grid-2 { display: flex; gap: 15px; flex-wrap: wrap; }
         .col { flex: 1; min-width: 300px; }
 
-        /* --- MODULES (ACADEMY) --- */
-        .module { background: var(--card-bg); border: 1px solid #222; margin-bottom: 15px; border-radius: 8px; overflow: hidden; }
-        .module-header { padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #0e0e0e; transition: background 0.2s; }
-        .module-header:hover { background: #151515; }
-        .module-header h3 { font-family: 'Bebas Neue'; font-size: 1.3rem; margin: 0; color: #fff; }
-        .module-content { display: none; background: #000; border-top: 1px solid #222; }
-        .module.active .module-content { display: block; }
-        .lesson-item { padding: 12px 20px; border-bottom: 1px solid #111; display: flex; justify-content: space-between; }
-        .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; font-family: 'Manrope'; font-size: 0.9rem; }
-        .lesson-item:hover { background: #111; }
-        .tag { color: var(--gold); border: 1px solid var(--gold); padding: 1px 8px; border-radius: 3px; font-size: 0.7rem; }
-
-        /* --- LIVE BUFFETT EQUATION STYLES --- */
+        /* --- BUFFETT EQUATION STYLES --- */
         .buffett-equation-box {
             background: #111;
             border: 1px solid #333;
@@ -181,18 +168,28 @@
         .eq-equals { font-size: 2rem; color: #fff; margin: 0 10px; }
         .eq-result { font-size: 3rem; font-weight: 800; color: var(--danger); text-shadow: 0 0 20px rgba(255, 68, 68, 0.3); }
 
-        /* Tiny TradingView widgets for the numbers */
         .tv-mini-val { height: 40px; width: 120px; overflow: hidden; pointer-events: none; }
+
+        /* --- MODULES (ACADEMY) --- */
+        .module { background: var(--card-bg); border: 1px solid #222; margin-bottom: 15px; border-radius: 8px; overflow: hidden; }
+        .module-header { padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #0e0e0e; transition: background 0.2s; }
+        .module-header:hover { background: #151515; }
+        .module-header h3 { font-family: 'Bebas Neue'; font-size: 1.3rem; margin: 0; color: #fff; }
+        .module-content { display: none; background: #000; border-top: 1px solid #222; }
+        .module.active .module-content { display: block; }
+        .lesson-item { padding: 12px 20px; border-bottom: 1px solid #111; display: flex; justify-content: space-between; }
+        .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; font-family: 'Manrope'; font-size: 0.9rem; }
+        .lesson-item:hover { background: #111; }
+        .tag { color: var(--gold); border: 1px solid var(--gold); padding: 1px 8px; border-radius: 3px; font-size: 0.7rem; }
 
         footer { text-align: center; padding: 40px 0; color: #333; font-size: 0.75rem; border-top: 1px solid #111; margin-top: 40px; }
 
-        /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            body { padding-top: 220px; } /* More space for stacked tabs */
+            body { padding-top: 220px; }
             .logo-text { font-size: 2rem; }
             .nav-tabs { padding: 5px 0; }
-            .tab-btn { font-size: 1rem; padding: 10px; width: 50%; max-width: none; } /* 2 tabs per row */
-            .chart-h, .flow-h, .map-h { height: 400px; } /* Even smaller on mobile */
+            .tab-btn { font-size: 1rem; padding: 10px; width: 50%; max-width: none; }
+            .chart-h, .flow-h, .map-h { height: 400px; }
             .buffett-equation-box { flex-direction: column; gap: 10px; }
             .eq-result { font-size: 2.5rem; }
         }
@@ -230,7 +227,7 @@
 
         <h2 class="section-title">MARKET INDICES (FLOW)</h2>
         <div class="widget-box flow-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>{ "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "en", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "showFloatingTooltip": false, "width": "100%", "height": "100%", "plotLineColorGrowing": "rgba(255, 215, 0, 1)", "plotLineColorFalling": "rgba(255, 215, 0, 1)", "gridLineColor": "rgba(240, 243, 250, 0)", "scaleFontColor": "rgba(255, 255, 255, 1)", "belowLineFillColorGrowing": "rgba(255, 215, 0, 0.12)", "belowLineFillColorFalling": "rgba(255, 215, 0, 0.12)", "belowLineFillColorGrowingBottom": "rgba(255, 215, 0, 0)", "belowLineFillColorFallingBottom": "rgba(255, 215, 0, 0)", "symbolActiveColor": "rgba(255, 215, 0, 0.12)", "tabs": [ { "title": "INDICES", "symbols": [ { "s": "FOREXCOM:SPXUSD", "d": "S&P 500" }, { "s": "FOREXCOM:NSXUSD", "d": "NASDAQ 100" }, { "s": "FOREXCOM:DJI", "d": "DOW 30" }, { "s": "RUSSELL:RUT", "d": "RUSSELL 2000" } ] } ] }</script></div>
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>{ "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "en", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "showFloatingTooltip": false, "width": "100%", "height": "100%", "plotLineColorGrowing": "rgba(255, 215, 0, 1)", "plotLineColorFalling": "rgba(255, 215, 0, 1)", "gridLineColor": "rgba(240, 243, 250, 0)", "scaleFontColor": "rgba(255, 255, 255, 1)", "belowLineFillColorGrowing": "rgba(255, 215, 0, 0.12)", "belowLineFillColorFalling": "rgba(255, 215, 0, 0.12)", "belowLineFillColorGrowingBottom": "rgba(255, 215, 0, 0)", "belowLineFillColorFallingBottom": "rgba(255, 215, 0, 0)", "symbolActiveColor": "rgba(255, 215, 0, 0.12)", "tabs": [ { "title": "INDICES", "symbols": [ { "s": "FOREXCOM:SPXUSD", "d": "S&P 500" }, { "s": "FOREXCOM:NSXUSD", "d": "NASDAQ 100" }, { "s": "FOREXCOM:DJI", "d": "DOW 30" }, { "s": "CME:RTY1!", "d": "RUSSELL 2000 (RTY)" } ] } ] }</script></div>
         </div>
     </div>
 
@@ -249,7 +246,7 @@
                         <div class="tradingview-widget-container">
                             <div class="tradingview-widget-container__widget"></div>
                             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "FRED:WILL5000INDFC", "width": "120", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+                            { "symbol": "FRED:NCBEILQ027S+FRED:FBCEILQ027S", "width": "120", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
                             </script>
                         </div>
                     </div>
@@ -273,14 +270,14 @@
                 <div class="tradingview-widget-container" style="height:60px; width:180px; overflow:hidden;">
                     <div class="tradingview-widget-container__widget"></div>
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                    { "symbol": "FRED:WILL5000INDFC/FRED:GDP*100", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+                    { "symbol": "(FRED:NCBEILQ027S+FRED:FBCEILQ027S)/FRED:GDP*100", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
                     </script>
                 </div>
             </div>
         </div>
 
         <div class="widget-box chart-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "FRED:WILL5000INDFC/FRED:GDP", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "(FRED:NCBEILQ027S+FRED:FBCEILQ027S)/FRED:GDP*100", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
         </div>
 
         <h2 class="section-title">SHILLER P/E RATIO (CAPE)</h2>
