@@ -166,9 +166,10 @@
         .eq-top { border-bottom: 2px solid #fff; padding-bottom: 5px; margin-bottom: 5px; width: 100%; }
         .eq-bottom { padding-top: 5px; width: 100%; }
         .eq-equals { font-size: 2rem; color: #fff; margin: 0 10px; }
-        .eq-result { font-size: 3rem; font-weight: 800; color: var(--danger); text-shadow: 0 0 20px rgba(255, 68, 68, 0.3); }
+        
+        /* Removed .eq-result style as we removed that widget to fix errors */
 
-        .tv-mini-val { height: 40px; width: 120px; overflow: hidden; pointer-events: none; }
+        .tv-mini-val { height: 40px; width: 150px; overflow: hidden; pointer-events: none; }
 
         /* --- MODULES (ACADEMY) --- */
         .module { background: var(--card-bg); border: 1px solid #222; margin-bottom: 15px; border-radius: 8px; overflow: hidden; }
@@ -191,7 +192,6 @@
             .tab-btn { font-size: 1rem; padding: 10px; width: 50%; max-width: none; }
             .chart-h, .flow-h, .map-h { height: 400px; }
             .buffett-equation-box { flex-direction: column; gap: 10px; }
-            .eq-result { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -227,26 +227,26 @@
 
         <h2 class="section-title">MARKET INDICES (FLOW)</h2>
         <div class="widget-box flow-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>{ "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "en", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "showFloatingTooltip": false, "width": "100%", "height": "100%", "plotLineColorGrowing": "rgba(255, 215, 0, 1)", "plotLineColorFalling": "rgba(255, 215, 0, 1)", "gridLineColor": "rgba(240, 243, 250, 0)", "scaleFontColor": "rgba(255, 255, 255, 1)", "belowLineFillColorGrowing": "rgba(255, 215, 0, 0.12)", "belowLineFillColorFalling": "rgba(255, 215, 0, 0.12)", "belowLineFillColorGrowingBottom": "rgba(255, 215, 0, 0)", "belowLineFillColorFallingBottom": "rgba(255, 215, 0, 0)", "symbolActiveColor": "rgba(255, 215, 0, 0.12)", "tabs": [ { "title": "INDICES", "symbols": [ { "s": "FOREXCOM:SPXUSD", "d": "S&P 500" }, { "s": "FOREXCOM:NSXUSD", "d": "NASDAQ 100" }, { "s": "FOREXCOM:DJI", "d": "DOW 30" }, { "s": "CME:RTY1!", "d": "RUSSELL 2000 (RTY)" } ] } ] }</script></div>
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>{ "colorTheme": "dark", "dateRange": "12M", "showChart": true, "locale": "en", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "showFloatingTooltip": false, "width": "100%", "height": "100%", "plotLineColorGrowing": "rgba(255, 215, 0, 1)", "plotLineColorFalling": "rgba(255, 215, 0, 1)", "gridLineColor": "rgba(240, 243, 250, 0)", "scaleFontColor": "rgba(255, 255, 255, 1)", "belowLineFillColorGrowing": "rgba(255, 215, 0, 0.12)", "belowLineFillColorFalling": "rgba(255, 215, 0, 0.12)", "belowLineFillColorGrowingBottom": "rgba(255, 215, 0, 0)", "belowLineFillColorFallingBottom": "rgba(255, 215, 0, 0)", "symbolActiveColor": "rgba(255, 215, 0, 0.12)", "tabs": [ { "title": "INDICES", "symbols": [ { "s": "FOREXCOM:SPXUSD", "d": "S&P 500" }, { "s": "FOREXCOM:NSXUSD", "d": "NASDAQ 100" }, { "s": "FOREXCOM:DJI", "d": "DOW 30" }, { "s": "CME_MINI:RTY1!", "d": "RUSSELL 2000" } ] } ] }</script></div>
         </div>
     </div>
 
     <div id="valuations" class="tab-content">
         
         <h2 class="section-title">BUFFETT INDICATOR</h2>
-        <span class="section-subtitle">LIVE RATIO CALCULATION</span>
+        <span class="section-subtitle">LIVE RATIO (DATA FROM FEDERAL RESERVE)</span>
         
         <div class="buffett-equation-box">
             <div class="eq-label">Buffett Indicator = </div>
             
             <div class="eq-fraction">
                 <div class="eq-top">
-                    <div style="font-size:0.8rem; color:#888;">Total Market Value ($B)</div>
+                    <div style="font-size:0.8rem; color:#888;">Total Corp Equities ($B)</div>
                     <div class="tv-mini-val">
                         <div class="tradingview-widget-container">
                             <div class="tradingview-widget-container__widget"></div>
                             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "FRED:NCBEILQ027S+FRED:FBCEILQ027S", "width": "120", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+                            { "symbol": "FRED:NCBEILQ027S", "width": "150", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
                             </script>
                         </div>
                     </div>
@@ -256,7 +256,7 @@
                         <div class="tradingview-widget-container">
                             <div class="tradingview-widget-container__widget"></div>
                             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                            { "symbol": "FRED:GDP", "width": "120", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
+                            { "symbol": "FRED:GDP", "width": "150", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
                             </script>
                         </div>
                     </div>
@@ -264,17 +264,7 @@
                 </div>
             </div>
 
-            <div class="eq-equals">=</div>
-
-            <div class="eq-result">
-                <div class="tradingview-widget-container" style="height:60px; width:180px; overflow:hidden;">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                    { "symbol": "(FRED:NCBEILQ027S+FRED:FBCEILQ027S)/FRED:GDP*100", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "en" }
-                    </script>
-                </div>
             </div>
-        </div>
 
         <div class="widget-box chart-h">
             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "(FRED:NCBEILQ027S+FRED:FBCEILQ027S)/FRED:GDP*100", "interval": "1M", "timezone": "Etc/UTC", "theme": "dark", "style": "2", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": true, "allow_symbol_change": false, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
