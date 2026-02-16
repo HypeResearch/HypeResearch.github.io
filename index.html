@@ -131,7 +131,7 @@
         .section-title { font-family: 'Bebas Neue'; font-size: 2rem; color: var(--gold); border-bottom: 1px solid #333; margin-bottom: 15px; padding-bottom: 5px; }
 
         /* --- SPECIFIC HEIGHTS --- */
-        .sector-war-h { height: 650px; } /* The new Chart+List height */
+        .sector-war-h { height: 600px; } 
         .news-h { height: 600px; }
         .intel-h { height: 450px; }
 
@@ -139,59 +139,21 @@
         .grid-2 { display: flex; gap: 20px; flex-wrap: wrap; }
         .col { flex: 1; min-width: 300px; }
 
-        /* --- ACADEMY 2.0 STYLES --- */
+        /* --- ACADEMY STYLES --- */
         .module { background: var(--card-bg); border: 1px solid #222; margin-bottom: 20px; border-radius: 8px; overflow: hidden; }
-        
-        .module-header { 
-            padding: 25px; 
-            cursor: pointer; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            background: linear-gradient(90deg, #111, #050505); 
-            border-bottom: 1px solid #1a1a1a;
-        }
+        .module-header { padding: 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(90deg, #111, #050505); border-bottom: 1px solid #1a1a1a; }
         .module-header h3 { font-family: 'Bebas Neue'; font-size: 1.8rem; margin: 0; color: #fff; letter-spacing: 1px; }
         .module-header:hover h3 { color: var(--gold); }
-        
         .module-content { display: none; background: #000; }
         .module.active .module-content { display: block; }
-        
-        .lesson-item { 
-            padding: 20px 25px; 
-            border-bottom: 1px solid #1a1a1a; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 10px;
-        }
+        .lesson-item { padding: 20px 25px; border-bottom: 1px solid #1a1a1a; display: flex; flex-direction: column; gap: 10px; }
         .lesson-top { display: flex; justify-content: space-between; align-items: center; }
-        
-        .lesson-title { 
-            color: #fff; 
-            text-decoration: none; 
-            font-weight: 700; 
-            font-size: 1.1rem; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-        }
-        
+        .lesson-title { color: #fff; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
         .lesson-meta { font-size: 0.8rem; color: var(--muted); display: flex; gap: 15px; margin-left: 30px; }
         .lesson-desc { color: #666; font-size: 0.9rem; margin-left: 30px; line-height: 1.5; }
-        
         .lesson-actions { margin-left: 30px; margin-top: 5px; }
-        .btn-resource { 
-            background: #111; 
-            border: 1px solid #333; 
-            color: var(--muted); 
-            padding: 5px 10px; 
-            border-radius: 4px; 
-            font-size: 0.75rem; 
-            text-decoration: none; 
-            transition: 0.2s; 
-        }
+        .btn-resource { background: #111; border: 1px solid #333; color: var(--muted); padding: 5px 10px; border-radius: 4px; font-size: 0.75rem; text-decoration: none; transition: 0.2s; }
         .btn-resource:hover { border-color: var(--gold); color: var(--gold); }
-
         .tag { background: rgba(255, 215, 0, 0.1); color: var(--gold); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
 
         /* --- FOOTER --- */
@@ -226,44 +188,26 @@
         <div class="module">
             <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 1: TECHNICAL FOUNDATIONS</h3><span class="tag">START HERE</span></div>
             <div class="module-content">
-                
                 <div class="lesson-item">
-                    <div class="lesson-top">
-                        <a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank" class="lesson-title"><span>🎥</span> INTRODUCTION TO HYPE</a>
-                        <span class="tag">WATCH</span>
-                    </div>
+                    <div class="lesson-top"><a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank" class="lesson-title"><span>🎥</span> INTRODUCTION TO HYPE</a><span class="tag">WATCH</span></div>
                     <div class="lesson-meta"><span>LEVEL: BEGINNER</span><span>•</span><span>10 MIN</span></div>
                     <p class="lesson-desc">Start your journey here. We cover the core philosophy of High Yield Performance Equity and how to set up your charts.</p>
                 </div>
-
                 <div class="lesson-item">
-                    <div class="lesson-top">
-                        <a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank" class="lesson-title"><span>🎥</span> MARKET STRUCTURE 101</a>
-                        <span class="tag">WATCH</span>
-                    </div>
+                    <div class="lesson-top"><a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank" class="lesson-title"><span>🎥</span> MARKET STRUCTURE 101</a><span class="tag">WATCH</span></div>
                     <div class="lesson-meta"><span>LEVEL: BEGINNER</span><span>•</span><span>25 MIN</span></div>
                     <p class="lesson-desc">Learn to identify Higher Highs and Lower Lows. This is the blueprint for every trade you will ever take.</p>
-                    <div class="lesson-actions"><a href="#" class="btn-resource">📄 DOWNLOAD CHEATSHEET</a></div>
                 </div>
-
                 <div class="lesson-item">
-                    <div class="lesson-top">
-                        <a href="https://www.youtube.com/watch?v=46sRElHMfww" target="_blank" class="lesson-title"><span>🎥</span> MASTERING TRENDLINES</a>
-                        <span class="tag">WATCH</span>
-                    </div>
+                    <div class="lesson-top"><a href="https://www.youtube.com/watch?v=46sRElHMfww" target="_blank" class="lesson-title"><span>🎥</span> MASTERING TRENDLINES</a><span class="tag">WATCH</span></div>
                     <div class="lesson-meta"><span>LEVEL: INTERMEDIATE</span><span>•</span><span>18 MIN</span></div>
                     <p class="lesson-desc">Stop drawing random lines. Learn the "3-Touch Rule" and how to trade breakouts with precision.</p>
                 </div>
-
                 <div class="lesson-item">
-                    <div class="lesson-top">
-                        <a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank" class="lesson-title"><span>🎥</span> FIBONACCI SECRETS</a>
-                        <span class="tag">WATCH</span>
-                    </div>
+                    <div class="lesson-top"><a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank" class="lesson-title"><span>🎥</span> FIBONACCI SECRETS</a><span class="tag">WATCH</span></div>
                     <div class="lesson-meta"><span>LEVEL: ADVANCED</span><span>•</span><span>30 MIN</span></div>
                     <p class="lesson-desc">Unlock the Golden Ratio. We dive deep into the .618 retracement and how to use it for sniper entries.</p>
                 </div>
-
             </div>
         </div>
 
@@ -271,10 +215,7 @@
             <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 2: ELLIOTT WAVE MASTERY</h3><span class="tag">ADVANCED</span></div>
             <div class="module-content">
                 <div class="lesson-item">
-                    <div class="lesson-top">
-                        <a href="https://www.youtube.com/watch?v=9gM2V6n5b8M" target="_blank" class="lesson-title"><span>🎥</span> WAVE THEORY INTRO</a>
-                        <span class="tag">WATCH</span>
-                    </div>
+                    <div class="lesson-top"><a href="https://www.youtube.com/watch?v=9gM2V6n5b8M" target="_blank" class="lesson-title"><span>🎥</span> WAVE THEORY INTRO</a><span class="tag">WATCH</span></div>
                     <div class="lesson-meta"><span>LEVEL: EXPERT</span><span>•</span><span>45 MIN</span></div>
                     <p class="lesson-desc">The market moves in waves. Learn to count the 1-2-3-4-5 impulse and the A-B-C correction.</p>
                     <div class="lesson-actions"><a href="#" class="btn-resource">📄 DOWNLOAD WAVE COUNT PDF</a></div>
@@ -286,10 +227,7 @@
             <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 3: TRADER PSYCHOLOGY</h3><span class="tag">MINDSET</span></div>
             <div class="module-content">
                 <div class="lesson-item">
-                    <div class="lesson-top">
-                        <a href="#" class="lesson-title" style="color:#555"><span>🎥</span> FOMO & DISCIPLINE</a>
-                        <span class="tag" style="border-color:#555; color:#555;">LOCKED</span>
-                    </div>
+                    <div class="lesson-top"><a href="#" class="lesson-title" style="color:#555"><span>🎥</span> FOMO & DISCIPLINE</a><span class="tag" style="border-color:#555; color:#555;">LOCKED</span></div>
                     <p class="lesson-desc">Why 90% of traders fail. Mastering your emotions is more important than mastering the chart.</p>
                 </div>
             </div>
@@ -299,10 +237,7 @@
             <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 4: PASSIVE INVESTING</h3><span class="tag">WEALTH</span></div>
             <div class="module-content">
                 <div class="lesson-item">
-                    <div class="lesson-top">
-                        <a href="#" class="lesson-title" style="color:#555"><span>🎥</span> THE LONG GAME</a>
-                        <span class="tag" style="border-color:#555; color:#555;">LOCKED</span>
-                    </div>
+                    <div class="lesson-top"><a href="#" class="lesson-title" style="color:#555"><span>🎥</span> THE LONG GAME</a><span class="tag" style="border-color:#555; color:#555;">LOCKED</span></div>
                 </div>
             </div>
         </div>
@@ -310,7 +245,7 @@
 
     <div id="intel" class="tab-content">
         
-        <h2 class="section-title">SECTOR WAR BOARD (YTD GAIN)</h2>
+        <h2 class="section-title">SECTOR LEADERBOARD (YTD)</h2>
         <div class="widget-box sector-war-h">
             <div class="tradingview-widget-container" style="height:100%;width:100%">
                 <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
@@ -318,16 +253,16 @@
                 {
                   "symbols": [
                     ["MARKET|12M",["AMEX:SPY|12M"]],
-                    ["TECH|12M",["AMEX:XLK|12M"]],
-                    ["FINANCE|12M",["AMEX:XLF|12M"]],
-                    ["HEALTH|12M",["AMEX:XLV|12M"]],
-                    ["ENERGY|12M",["AMEX:XLE|12M"]],
-                    ["CONSUMER|12M",["AMEX:XLY|12M"]],
-                    ["STAPLES|12M",["AMEX:XLP|12M"]],
-                    ["UTILITIES|12M",["AMEX:XLU|12M"]],
-                    ["INDUSTRIAL|12M",["AMEX:XLI|12M"]],
-                    ["MATERIALS|12M",["AMEX:XLB|12M"]],
-                    ["COMM|12M",["AMEX:XLC|12M"]]
+                    ["TECH (XLK)|12M",["AMEX:XLK|12M"]],
+                    ["FINANCE (XLF)|12M",["AMEX:XLF|12M"]],
+                    ["HEALTH (XLV)|12M",["AMEX:XLV|12M"]],
+                    ["ENERGY (XLE)|12M",["AMEX:XLE|12M"]],
+                    ["CONSUMER (XLY)|12M",["AMEX:XLY|12M"]],
+                    ["STAPLES (XLP)|12M",["AMEX:XLP|12M"]],
+                    ["UTILITIES (XLU)|12M",["AMEX:XLU|12M"]],
+                    ["INDUSTRIAL (XLI)|12M",["AMEX:XLI|12M"]],
+                    ["MATERIALS (XLB)|12M",["AMEX:XLB|12M"]],
+                    ["COMM (VOX)|12M",["AMEX:XLC|12M"]]
                   ],
                   "chartOnly": false,
                   "width": "100%",
@@ -353,14 +288,7 @@
                   "maLength": 9,
                   "lineWidth": 2,
                   "lineType": 0,
-                  "dateRanges": [
-                    "1d|1",
-                    "1m|30",
-                    "3m|60",
-                    "12m|1D",
-                    "60m|1W",
-                    "all|1M"
-                  ]
+                  "dateRanges": [ "1d|1", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M" ]
                 }
                 </script>
             </div>
