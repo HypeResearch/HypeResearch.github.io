@@ -9,7 +9,7 @@
         :root {
             --bg-dark: #000000;
             --bg-card: #0c0c0c;
-            --accent-gold: #d4af37;
+            --accent-gold: #FFD700;
             --text-primary: #ffffff;
             --text-secondary: #aaaaaa;
             --border: #222222;
@@ -60,30 +60,8 @@
         section { padding: 4rem 5%; max-width: 1300px; margin: 0 auto; border-bottom: 1px solid var(--border); }
         .section-title { font-family: 'Bebas Neue', cursive; font-size: 3rem; margin-bottom: 2rem; color: var(--accent-gold); text-align: center; }
 
-        /* HERO AREA */
         .hero { text-align: center; padding: 6rem 0; border: none; }
-        .hero h1 { 
-            font-family: 'Bebas Neue', cursive; 
-            font-size: clamp(3rem, 10vw, 7rem); 
-            line-height: 1.1; 
-            color: #ffffff; 
-            letter-spacing: 3px;
-        }
-
-        /* FUNDAMENTALS */
-        .fundamentals-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .fund-card { 
-            background: var(--bg-card); 
-            border: 1px solid var(--border); 
-            border-top: 4px solid var(--accent-gold);
-            border-radius: 4px; 
-            padding: 1.5rem; 
-            flex: 1 1 300px; 
-        }
-        .fund-card h3 { color: #ffffff; margin-bottom: 1rem; font-family: 'Bebas Neue', cursive; font-size: 2rem; }
-        table { width: 100%; border-collapse: collapse; }
-        td { padding: 0.8rem 0; border-bottom: 1px solid #1a1a1a; font-size: 1rem; }
-        .val { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: bold; color: var(--accent-green); }
+        .hero h1 { font-family: 'Bebas Neue', cursive; font-size: clamp(3rem, 10vw, 7rem); color: #ffffff; letter-spacing: 3px; }
 
         /* MODULES */
         .module { background: var(--bg-card); border: 1px solid var(--border); margin-bottom: 1rem; }
@@ -93,32 +71,11 @@
         .module.active .module-content { display: block; }
         .lesson-item { padding: 1.2rem; background: #111; margin-bottom: 0.8rem; border-left: 4px solid var(--accent-gold); display: flex; justify-content: space-between; }
         .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; }
+
+        footer { padding: 5rem 5%; text-align: center; background: #000; border-top: 1px solid var(--border); }
+    </style>
 </head>
 <body>
-     <div class="market-pulse-container" style="background: #000; border: 1px solid #FFD700; border-radius: 12px; padding: 20px; max-width: 1000px; margin: 20px auto; overflow: hidden;">
-    <h2 style="color: #FFD700; font-family: 'Bebas Neue', cursive; margin-bottom: 15px; font-size: 1.5rem; letter-spacing: 1px;">
-        ● S&P 500 LIVE HEATMAP
-    </h2>
-    <div class="tradingview-widget-container" style="height: 500px;">
-        <div class="tradingview-widget-container__widget"></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
-        {
-          "dataSource": "S&P500",
-          "grouping": "sector",
-          "blockSize": "market_cap",
-          "blockColor": "change",
-          "locale": "en",
-          "colorTheme": "dark",
-          "hasTopBar": false,
-          "isTransparent": true,
-          "width": "100%",
-          "height": "100%"
-        }
-        </script>
-    </div>
-</div>
-   
-
 
     <header>
         <div class="logo-container">
@@ -135,18 +92,28 @@
         <h1>HIGH YIELD PERFORMANCE EQUITY</h1>
     </section>
 
-    <section id="report">
-        <h2 class="section-title">MARKET REPORT</h2>
-        <div class="fundamentals-container">
-            <div class="fund-card"><h3>SPY</h3><table><tr><td>NAV</td><td class="val">$681.29</td></tr></table></div>
-            <div class="fund-card"><h3>NVDA</h3><table><tr><td>PE</td><td class="val">37.06x</td></tr></table></div>
-            <div class="fund-card"><h3>AVGO</h3><table><tr><td>YIELD</td><td class="val">1.41%</td></tr></table></div>
-            <div class="fund-card"><h3>GOOGL</h3><table><tr><td>CLOUD</td><td class="val">+48%</td></tr></table></div>
-            <div class="fund-card"><h3>AAPL</h3><table><tr><td>REV</td><td class="val">$143.8B</td></tr></table></div>
-            <div class="fund-card"><h3>MSFT</h3><table><tr><td>AZURE</td><td class="val">+26%</td></tr></table></div>
-            <div class="fund-card"><h3>AMD</h3><table><tr><td>DC</td><td class="val">+60%</td></tr></table></div>
-            <div class="fund-card"><h3>TSM</h3><table><tr><td>NODE</td><td class="val">2nm</td></tr></table></div>
-            <div class="fund-card"><h3>MU</h3><table><tr><td>HBM</td><td class="val">SOLD OUT</td></tr></table></div>
+    <section id="market-pulse" style="padding: 2rem 5%;">
+        <div class="market-pulse-container" style="background: #000; border: 1px solid #FFD700; border-radius: 12px; padding: 20px; overflow: hidden;">
+            <h2 style="color: #FFD700; font-family: 'Bebas Neue', cursive; margin-bottom: 15px; font-size: 2rem; letter-spacing: 1px;">
+                ● S&P 500 LIVE HEATMAP
+            </h2>
+            <div class="tradingview-widget-container" style="height: 500px;">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+                {
+                  "dataSource": "S&P500",
+                  "grouping": "sector",
+                  "blockSize": "market_cap",
+                  "blockColor": "change",
+                  "locale": "en",
+                  "colorTheme": "dark",
+                  "hasTopBar": false,
+                  "isTransparent": true,
+                  "width": "100%",
+                  "height": "100%"
+                }
+                </script>
+            </div>
         </div>
     </section>
 
@@ -166,31 +133,11 @@
                     <div class="lesson-item"><a href="https://www.youtube.com/watch?v=bskIlCxa" target="_blank"><span>🎥 WAVE THEORY INTRO</span><span>WATCH</span></a></div>
                 </div>
             </div>
-            <div class="module">
-                <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 3: TECHNICALS</h3><span>▼</span></div>
-                <div class="module-content">
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=46sRElHMfww" target="_blank"><span>🎥 TRENDLINES</span><span>WATCH</span></a></div>
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank"><span>🎥 FIBONACCI TECHNIQUES</span><span>WATCH</span></a></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="chat">
-        <h2 class="section-title">COMMUNITY HUB</h2>
-        <div class="chat-container">
-            <div class="chat-messages" id="chatMessages">
-                <div class="message">WELCOME TO HYPE.</div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="chatInput" placeholder="MESSAGE...">
-                <button class="btn-send" onclick="sendMessage()">SEND</button>
-            </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-logo">HYPE CAPITAL</div>
+        <div class="footer-logo" style="font-family: 'Bebas Neue'; color: #FFD700; font-size: 2rem;">HYPE CAPITAL</div>
         <p>© 2026 HIGH YIELD PERFORMANCE EQUITY. TRADING INVOLVES RISK.</p>
     </footer>
 
@@ -200,14 +147,12 @@
         async function updateTicker() {
             const ticker = document.getElementById('marketTicker');
             try {
-                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,cardano&vs_currencies=usd&include_24hr_change=true');
+                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true');
                 const data = await res.json();
                 const coins = [
                     { n: 'BTC', p: data.bitcoin.usd, c: data.bitcoin.usd_24h_change },
                     { n: 'ETH', p: data.ethereum.usd, c: data.ethereum.usd_24h_change },
-                    { n: 'SOL', p: data.solana.usd, c: data.solana.usd_24h_change },
-                    { n: 'XRP', p: data.ripple.usd, c: data.ripple.usd_24h_change },
-                    { n: 'ADA', p: data.cardano.usd, c: data.cardano.usd_24h_change }
+                    { n: 'SOL', p: data.solana.usd, c: data.solana.usd_24h_change }
                 ];
                 const tickerItems = coins.map(i => `
                     <div class="ticker-item">
@@ -216,23 +161,7 @@
                         <span class="${i.c >= 0 ? 'ticker-up' : 'ticker-down'}">${i.c.toFixed(2)}%</span>
                     </div>`).join('');
                 ticker.innerHTML = tickerItems + tickerItems;
-            } catch (e) { 
-                console.error(e);
-                ticker.innerHTML = "<div style='color:red; padding-left:20px;'>API SYNC ERROR</div>"; 
-            }
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const messages = document.getElementById('chatMessages');
-            if (input.value.trim() !== "") {
-                const msg = document.createElement('div');
-                msg.className = "message";
-                msg.textContent = input.value;
-                messages.appendChild(msg);
-                input.value = "";
-                messages.scrollTop = messages.scrollHeight;
-            }
+            } catch (e) { ticker.innerHTML = "<div>FEED OFFLINE</div>"; }
         }
 
         window.addEventListener('load', () => { 
@@ -241,13 +170,12 @@
         });
     </script>
 
- <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
+    <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
       new Crate({
         server: '1452115058015600672',
-        channel: '1452444153073111080', // Directs users to #general
+        channel: '1452444153073111080',
         shard: 'https://e.widgetbot.io',
-        color: '#FFD700', // Matches your Heatmap Gold
-        logo: 'https://cdn.discordapp.com/avatars/844770793036185640/6d605acde7fa846d6ae1014046ababa2?size=512'
+        color: '#FFD700'
       })
     </script>
 
