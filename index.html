@@ -8,134 +8,38 @@
     
     <style>
         /* --- THEME VARIABLES --- */
-        :root {
-            --bg: #000000;
-            --card-bg: rgba(12, 12, 12, 0.95);
-            --gold: #FFD700;
-            --text: #ffffff;
-            --muted: #888;
-            --border: #222222;
-        }
-
-        /* --- RESET & BASIC SETUP --- */
+        :root { --bg: #000000; --card-bg: rgba(12, 12, 12, 0.95); --gold: #FFD700; --text: #ffffff; --muted: #888; --border: #222222; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Manrope', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            padding-top: 180px; 
-            overflow-x: hidden;
-        }
+        body { font-family: 'Manrope', sans-serif; background-color: var(--bg); color: var(--text); padding-top: 180px; overflow-x: hidden; }
 
         /* --- BACKGROUND ART --- */
-        .background-art {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            width: 50vw;   
-            height: 50vh;  
-            background-image: url('bullbear.png'); 
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: bottom right;
-            z-index: -1;   
-            opacity: 0.2;  
-            pointer-events: none;
-        }
+        .background-art { position: fixed; bottom: 0; right: 0; width: 50vw; height: 50vh; background-image: url('bullbear.png'); background-size: contain; background-repeat: no-repeat; background-position: bottom right; z-index: -1; opacity: 0.2; pointer-events: none; }
 
-        /* --- HEADER AREA --- */
-        header { 
-            position: fixed; 
-            top: 0; 
-            width: 100%; 
-            z-index: 9999; 
-            background: #000; 
-            border-bottom: 1px solid var(--border); 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
-        }
-
+        /* --- HEADER --- */
+        header { position: fixed; top: 0; width: 100%; z-index: 9999; background: #000; border-bottom: 1px solid var(--border); box-shadow: 0 5px 20px rgba(0,0,0,0.8); }
         .logo-container { text-align: center; padding: 10px 0; border-bottom: 1px solid #111; }
-        .logo-text { 
-            font-family: 'Bebas Neue'; 
-            font-size: 2.5rem; 
-            letter-spacing: 3px; 
-            text-decoration: none;
-            display: block;
-            background: linear-gradient(90deg, #FFD700 0%, #FFF 50%, #FFD700 100%);
-            background-size: 200% auto;
-            color: #FFD700;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
-        }
+        .logo-text { font-family: 'Bebas Neue'; font-size: 2.5rem; letter-spacing: 3px; text-decoration: none; display: block; background: linear-gradient(90deg, #FFD700 0%, #FFF 50%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; background-size: 200%; }
         @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
 
-        /* --- NAVIGATION TABS --- */
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            background: #050505;
-            padding: 0;
-        }
-        
-        .tab-btn {
-            background: transparent;
-            border: none;
-            color: #555;
-            font-family: 'Bebas Neue';
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-            padding: 15px 30px;
-            cursor: pointer;
-            transition: 0.3s;
-            border-bottom: 3px solid transparent;
-            width: 150px;
-        }
-
+        /* --- TABS --- */
+        .nav-tabs { display: flex; justify-content: center; background: #050505; padding: 0; }
+        .tab-btn { background: transparent; border: none; color: #555; font-family: 'Bebas Neue'; font-size: 1.4rem; letter-spacing: 1px; padding: 15px 30px; cursor: pointer; transition: 0.3s; border-bottom: 3px solid transparent; width: 150px; }
         .tab-btn:hover { color: #fff; }
-        
-        .tab-btn.active {
-            color: var(--gold);
-            border-bottom: 3px solid var(--gold);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-            background: rgba(255, 215, 0, 0.05);
-        }
+        .tab-btn.active { color: var(--gold); border-bottom: 3px solid var(--gold); text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); background: rgba(255, 215, 0, 0.05); }
 
-        /* --- CONTENT SECTIONS --- */
-        .tab-content {
-            display: none; 
-            padding: 20px 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-            animation: fadeIn 0.5s ease-out;
-        }
-        
+        /* --- LAYOUT --- */
+        .tab-content { display: none; padding: 20px 5%; max-width: 1400px; margin: 0 auto; animation: fadeIn 0.5s ease-out; }
         .tab-content.active { display: block; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- WIDGET BOXES --- */
-        .widget-box {
-            background: rgba(0,0,0,0.6);
-            border: 1px solid #222;
-            border-radius: 12px;
-            padding: 10px;
-            margin-bottom: 30px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
-            transition: 0.3s;
-        }
-        .widget-box:hover { border-color: var(--gold); box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); }
-
         .section-title { font-family: 'Bebas Neue'; font-size: 2rem; color: var(--gold); border-bottom: 1px solid #333; margin-bottom: 15px; padding-bottom: 5px; }
-
-        /* --- SPECIFIC HEIGHTS --- */
+        
+        .widget-box { background: rgba(0,0,0,0.6); border: 1px solid #222; border-radius: 12px; padding: 10px; margin-bottom: 30px; overflow: hidden; box-shadow: 0 0 20px rgba(255, 215, 0, 0.05); transition: 0.3s; }
+        .widget-box:hover { border-color: var(--gold); box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); }
+        
         .sector-war-h { height: 600px; } 
         .news-h { height: 600px; }
         .intel-h { height: 450px; }
-
-        /* --- GRID FOR INTEL PAGE --- */
         .grid-2 { display: flex; gap: 20px; flex-wrap: wrap; }
         .col { flex: 1; min-width: 300px; }
 
@@ -151,12 +55,8 @@
         .lesson-title { color: #fff; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
         .lesson-meta { font-size: 0.8rem; color: var(--muted); display: flex; gap: 15px; margin-left: 30px; }
         .lesson-desc { color: #666; font-size: 0.9rem; margin-left: 30px; line-height: 1.5; }
-        .lesson-actions { margin-left: 30px; margin-top: 5px; }
-        .btn-resource { background: #111; border: 1px solid #333; color: var(--muted); padding: 5px 10px; border-radius: 4px; font-size: 0.75rem; text-decoration: none; transition: 0.2s; }
-        .btn-resource:hover { border-color: var(--gold); color: var(--gold); }
         .tag { background: rgba(255, 215, 0, 0.1); color: var(--gold); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
 
-        /* --- FOOTER --- */
         footer { text-align: center; padding: 50px 0; color: #444; font-size: 0.8rem; border-top: 1px solid #111; margin-top: 50px; }
     </style>
 </head>
@@ -168,12 +68,10 @@
         <div class="logo-container">
             <a href="#" class="logo-text">HYPE CAPITAL</a>
         </div>
-        
         <div class="nav-tabs">
             <button class="tab-btn active" onclick="openTab('academy')">ACADEMY</button>
             <button class="tab-btn" onclick="openTab('intel')">INTEL</button>
         </div>
-
         <div class="tradingview-widget-container" style="height: 46px; border-bottom: 1px solid var(--gold);">
             <div class="tradingview-widget-container__widget"></div>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
@@ -184,29 +82,28 @@
 
     <div id="academy" class="tab-content active">
         <h2 class="section-title">TRADING CURRICULUM</h2>
-        
         <div class="module">
             <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 1: TECHNICAL FOUNDATIONS</h3><span class="tag">START HERE</span></div>
             <div class="module-content">
                 <div class="lesson-item">
                     <div class="lesson-top"><a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank" class="lesson-title"><span>🎥</span> INTRODUCTION TO HYPE</a><span class="tag">WATCH</span></div>
                     <div class="lesson-meta"><span>LEVEL: BEGINNER</span><span>•</span><span>10 MIN</span></div>
-                    <p class="lesson-desc">Start your journey here. We cover the core philosophy of High Yield Performance Equity and how to set up your charts.</p>
+                    <p class="lesson-desc">Start your journey here. We cover the core philosophy of High Yield Performance Equity.</p>
                 </div>
                 <div class="lesson-item">
                     <div class="lesson-top"><a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank" class="lesson-title"><span>🎥</span> MARKET STRUCTURE 101</a><span class="tag">WATCH</span></div>
                     <div class="lesson-meta"><span>LEVEL: BEGINNER</span><span>•</span><span>25 MIN</span></div>
-                    <p class="lesson-desc">Learn to identify Higher Highs and Lower Lows. This is the blueprint for every trade you will ever take.</p>
+                    <p class="lesson-desc">Learn to identify Higher Highs and Lower Lows. This is the blueprint for every trade.</p>
                 </div>
                 <div class="lesson-item">
                     <div class="lesson-top"><a href="https://www.youtube.com/watch?v=46sRElHMfww" target="_blank" class="lesson-title"><span>🎥</span> MASTERING TRENDLINES</a><span class="tag">WATCH</span></div>
                     <div class="lesson-meta"><span>LEVEL: INTERMEDIATE</span><span>•</span><span>18 MIN</span></div>
-                    <p class="lesson-desc">Stop drawing random lines. Learn the "3-Touch Rule" and how to trade breakouts with precision.</p>
+                    <p class="lesson-desc">Stop drawing random lines. Learn the "3-Touch Rule" and how to trade breakouts.</p>
                 </div>
                 <div class="lesson-item">
                     <div class="lesson-top"><a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank" class="lesson-title"><span>🎥</span> FIBONACCI SECRETS</a><span class="tag">WATCH</span></div>
                     <div class="lesson-meta"><span>LEVEL: ADVANCED</span><span>•</span><span>30 MIN</span></div>
-                    <p class="lesson-desc">Unlock the Golden Ratio. We dive deep into the .618 retracement and how to use it for sniper entries.</p>
+                    <p class="lesson-desc">Unlock the Golden Ratio. We dive deep into the .618 retracement.</p>
                 </div>
             </div>
         </div>
@@ -218,7 +115,6 @@
                     <div class="lesson-top"><a href="https://www.youtube.com/watch?v=9gM2V6n5b8M" target="_blank" class="lesson-title"><span>🎥</span> WAVE THEORY INTRO</a><span class="tag">WATCH</span></div>
                     <div class="lesson-meta"><span>LEVEL: EXPERT</span><span>•</span><span>45 MIN</span></div>
                     <p class="lesson-desc">The market moves in waves. Learn to count the 1-2-3-4-5 impulse and the A-B-C correction.</p>
-                    <div class="lesson-actions"><a href="#" class="btn-resource">📄 DOWNLOAD WAVE COUNT PDF</a></div>
                 </div>
             </div>
         </div>
@@ -252,17 +148,17 @@
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
                 {
                   "symbols": [
-                    ["MARKET|12M",["AMEX:SPY|12M"]],
-                    ["TECH (XLK)|12M",["AMEX:XLK|12M"]],
-                    ["FINANCE (XLF)|12M",["AMEX:XLF|12M"]],
-                    ["HEALTH (XLV)|12M",["AMEX:XLV|12M"]],
-                    ["ENERGY (XLE)|12M",["AMEX:XLE|12M"]],
-                    ["CONSUMER (XLY)|12M",["AMEX:XLY|12M"]],
-                    ["STAPLES (XLP)|12M",["AMEX:XLP|12M"]],
-                    ["UTILITIES (XLU)|12M",["AMEX:XLU|12M"]],
-                    ["INDUSTRIAL (XLI)|12M",["AMEX:XLI|12M"]],
-                    ["MATERIALS (XLB)|12M",["AMEX:XLB|12M"]],
-                    ["COMM (VOX)|12M",["AMEX:XLC|12M"]]
+                    ["S&P 500", ["AMEX:SPY"]],
+                    ["Technology", ["AMEX:XLK"]],
+                    ["Financials", ["AMEX:XLF"]],
+                    ["Healthcare", ["AMEX:XLV"]],
+                    ["Energy", ["AMEX:XLE"]],
+                    ["Consumer Disc", ["AMEX:XLY"]],
+                    ["Consumer Stp", ["AMEX:XLP"]],
+                    ["Utilities", ["AMEX:XLU"]],
+                    ["Industrials", ["AMEX:XLI"]],
+                    ["Materials", ["AMEX:XLB"]],
+                    ["Comms", ["AMEX:XLC"]]
                   ],
                   "chartOnly": false,
                   "width": "100%",
@@ -288,7 +184,8 @@
                   "maLength": 9,
                   "lineWidth": 2,
                   "lineType": 0,
-                  "dateRanges": [ "1d|1", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M" ]
+                  "dateRanges": [ "1d|1", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M" ],
+                  "dateRange": "12m" 
                 }
                 </script>
             </div>
