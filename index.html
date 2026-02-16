@@ -25,7 +25,7 @@
             background-color: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
-            padding-top: 160px; /* Increased slightly for new ticker height */
+            padding-top: 160px; 
             overflow-x: hidden;
         }
 
@@ -62,7 +62,6 @@
         
         .logo-container { text-align: center; padding: 10px 0; border-bottom: 1px solid #111; }
         
-        /* --- SHIMMERING LOGO --- */
         .logo-text { 
             font-family: 'Bebas Neue', cursive; 
             font-size: 3rem; 
@@ -77,10 +76,10 @@
             animation: goldShine 3s linear infinite;
         }
 
-        /* --- TRADINGVIEW TICKER (REPLACES OLD TICKER) --- */
+        /* --- TRADINGVIEW TICKER --- */
         .tv-ticker-container {
             width: 100%;
-            height: 46px; /* Exact height for the widget */
+            height: 46px; 
             border-bottom: 1px solid var(--accent-gold);
             overflow: hidden;
         }
@@ -99,11 +98,12 @@
         section:nth-child(2) { animation-delay: 0.2s; }
         section:nth-child(3) { animation-delay: 0.3s; }
         section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
 
         .section-title { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--accent-gold); border-bottom: 2px solid #111; display: inline-block; }
 
-        /* --- HEATMAP & NEWS CONTAINERS --- */
-        .heatmap-wrapper, .news-wrapper {
+        /* --- WIDGET WRAPPERS --- */
+        .heatmap-wrapper, .news-wrapper, .intel-card {
             background: rgba(0, 0, 0, 0.85);
             border: 1px solid var(--accent-gold);
             border-radius: 12px;
@@ -114,10 +114,22 @@
         }
         .heatmap-wrapper { height: 800px; }
         .news-wrapper { height: 600px; }
-
-        .heatmap-wrapper:hover, .news-wrapper:hover {
+        
+        .heatmap-wrapper:hover, .news-wrapper:hover, .intel-card:hover {
             box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
             border-color: #fff;
+        }
+
+        /* --- INTELLIGENCE HUB (NEW) --- */
+        .intel-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .intel-card {
+            flex: 1;
+            min-width: 300px;
+            height: 450px; /* Uniform height */
         }
 
         /* --- FUNDAMENTALS --- */
@@ -137,7 +149,6 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.5), 0 0 15px rgba(255, 215, 0, 0.2);
             border-top: 4px solid #fff;
         }
-        
         .fund-card h3 { color: #ffffff; margin-bottom: 1rem; font-family: 'Bebas Neue', cursive; font-size: 2rem; }
         table { width: 100%; border-collapse: collapse; }
         td { padding: 0.8rem 0; border-bottom: 1px solid #1a1a1a; font-size: 1rem; }
@@ -157,14 +168,11 @@
             box-shadow: -5px 5px 15px rgba(255, 215, 0, 0.1);
             border-color: #444;
         }
-
         .module-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
         .module-header:hover { background: #1a1a1a; }
         .module-header h3 { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; color: #ffffff; margin: 0; }
-        
         .module-content { padding: 0; display: none; background: #050505; border-top: 1px solid var(--border); }
         .module.active .module-content { display: block; }
-        
         .lesson-item { padding: 1.5rem; border-bottom: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; }
         .lesson-item:last-child { border-bottom: none; }
         .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; }
@@ -187,7 +195,6 @@
         <div class="logo-container">
             <a href="#" class="logo-text">HYPE CAPITAL</a>
         </div>
-        
         <div class="tv-ticker-container">
             <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
@@ -217,7 +224,6 @@
     <section id="strategies" style="margin-top: 20px;">
         <h2 class="section-title">TRADING STRATEGIES</h2>
         <div class="course-modules">
-            
             <div class="module">
                 <div class="module-header" onclick="toggleModule(this)">
                     <h3>MODULE 1: TECHNICALS</h3>
@@ -230,7 +236,6 @@
                     <div class="lesson-item"><a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank"><span>🎥 FIBONACCI TECHNIQUES</span><span>WATCH</span></a></div>
                 </div>
             </div>
-
             <div class="module">
                 <div class="module-header" onclick="toggleModule(this)">
                     <h3>MODULE 2: ELLIOT WAVE</h3>
@@ -240,7 +245,6 @@
                     <div class="lesson-item"><a href="https://www.youtube.com/watch?v=9gM2V6n5b8M" target="_blank"><span>🎥 WAVE THEORY INTRO</span><span>WATCH</span></a></div>
                 </div>
             </div>
-
             <div class="module">
                 <div class="module-header" onclick="toggleModule(this)">
                     <h3>MODULE 3: PASSIVE INVESTING</h3>
@@ -250,7 +254,46 @@
                     <div class="lesson-item"><a href="#"><span>🎥 COMING SOON</span><span>LOCKED</span></a></div>
                 </div>
             </div>
+        </div>
+    </section>
 
+    <section id="intelligence">
+        <h2 class="section-title">INTELLIGENCE HUB</h2>
+        <div class="intel-container">
+            <div class="intel-card">
+                <div class="tradingview-widget-container" style="height:100%;width:100%">
+                    <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+                    {
+                    "interval": "1D",
+                    "width": "100%",
+                    "isTransparent": true,
+                    "height": "100%",
+                    "symbol": "AMEX:SPY",
+                    "showIntervalTabs": true,
+                    "displayMode": "single",
+                    "locale": "en",
+                    "colorTheme": "dark"
+                    }
+                    </script>
+                </div>
+            </div>
+            <div class="intel-card">
+                <div class="tradingview-widget-container" style="height:100%;width:100%">
+                    <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+                    {
+                    "colorTheme": "dark",
+                    "isTransparent": true,
+                    "width": "100%",
+                    "height": "100%",
+                    "locale": "en",
+                    "importanceFilter": "0,1",
+                    "currencyFilter": "USD"
+                    }
+                    </script>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -276,7 +319,7 @@
                 }
                 </script>
             </div>
-            </div>
+        </div>
     </section>
 
     <section id="news-wire">
@@ -297,7 +340,7 @@
                 }
                 </script>
             </div>
-            </div>
+        </div>
     </section>
 
     <section id="report">
@@ -321,12 +364,8 @@
     </footer>
 
     <script>
-        function toggleModule(header) { 
-            header.parentElement.classList.toggle('active'); 
-        }
-        // Note: Replaced manual ticker script with Widget above
+        function toggleModule(header) { header.parentElement.classList.toggle('active'); }
     </script>
-
     <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
       new Crate({
         server: '1452115058015600672',
