@@ -1,43 +1,44 @@
+It is much smarter to keep everything in one file but use "Tabs" to switch between views instantly. This makes your site feel like a real app (like Robinhood or ThinkOrSwim) because it never has to reload.
+
+I have built the Ultimate "Tabbed" Terminal for you.
+
+One File: You only need index.html.
+
+3 Tabs: "War Room" (Trade), "Intel" (Data), and "Academy" (Learn).
+
+Instant Switch: Clicking a tab changes the screen immediately without reloading.
+
+The Final "HYPE CAPITAL" Terminal Code
+Delete everything in your index.html and paste this. You do not need any other files.
+
+HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H.Y.P.E. - High Yield Performance Equity</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>HYPE CAPITAL | TERMINAL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         /* --- THEME VARIABLES --- */
         :root {
-            --bg-dark: #000000;
-            --bg-card: #0c0c0c;
-            --accent-gold: #FFD700;
-            --text-primary: #ffffff;
-            --text-secondary: #aaaaaa;
+            --bg: #000000;
+            --card-bg: rgba(12, 12, 12, 0.95);
+            --gold: #FFD700;
+            --text: #ffffff;
             --border: #222222;
         }
 
         /* --- RESET & BASIC SETUP --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Manrope', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-            padding-top: 160px; 
+            background-color: var(--bg);
+            color: var(--text);
+            padding-top: 180px; /* Space for Header + Tabs */
             overflow-x: hidden;
-        }
-
-        /* --- ANIMATIONS --- */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes goldShine {
-            0% { background-position: -200%; }
-            100% { background-position: 200%; }
         }
 
         /* --- BACKGROUND ART --- */
@@ -54,18 +55,24 @@
             z-index: -1;   
             opacity: 0.2;  
             pointer-events: none;
-            animation: fadeUp 1.5s ease-out;
         }
 
-        /* --- FIXED HEADER --- */
-        header { position: fixed; top: 0; width: 100%; z-index: 9999; background: var(--bg-dark); border-bottom: 1px solid var(--border); }
-        
+        /* --- HEADER AREA --- */
+        header { 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 9999; 
+            background: #000; 
+            border-bottom: 1px solid var(--border); 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+        }
+
         .logo-container { text-align: center; padding: 10px 0; border-bottom: 1px solid #111; }
-        
         .logo-text { 
-            font-family: 'Bebas Neue', cursive; 
-            font-size: 3rem; 
-            letter-spacing: 4px; 
+            font-family: 'Bebas Neue'; 
+            font-size: 2.5rem; 
+            letter-spacing: 3px; 
             text-decoration: none;
             display: block;
             background: linear-gradient(90deg, #FFD700 0%, #FFF 50%, #FFD700 100%);
@@ -73,111 +80,97 @@
             color: #FFD700;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: goldShine 3s linear infinite;
+            animation: shine 3s linear infinite;
+        }
+        @keyframes shine { 0% { background-position: -200%; } 100% { background-position: 200%; } }
+
+        /* --- NAVIGATION TABS --- */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background: #050505;
+            padding: 0;
+        }
+        
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: #555;
+            font-family: 'Bebas Neue';
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-bottom: 3px solid transparent;
+            width: 150px;
         }
 
-        /* --- TRADINGVIEW TICKER --- */
-        .tv-ticker-container {
-            width: 100%;
-            height: 46px; 
-            border-bottom: 1px solid var(--accent-gold);
-            overflow: hidden;
+        .tab-btn:hover { color: #fff; }
+        
+        .tab-btn.active {
+            color: var(--gold);
+            border-bottom: 3px solid var(--gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            background: rgba(255, 215, 0, 0.05);
         }
 
-        /* --- SECTIONS GENERAL --- */
-        section { 
-            padding: 2rem 5%; 
-            max-width: 1400px; 
-            margin: 0 auto; 
-            margin-bottom: 4rem; 
-            position: relative;
-            animation: fadeUp 0.8s ease-out forwards;
-            opacity: 0; 
+        /* --- CONTENT SECTIONS (HIDDEN BY DEFAULT) --- */
+        .tab-content {
+            display: none; /* Hide all tabs */
+            padding: 20px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease-out;
         }
-        /* Staggered Load Animation */
-        section:nth-child(1) { animation-delay: 0.1s; }
-        section:nth-child(2) { animation-delay: 0.2s; }
-        section:nth-child(3) { animation-delay: 0.3s; }
-        section:nth-child(4) { animation-delay: 0.4s; }
-        section:nth-child(5) { animation-delay: 0.5s; }
-        section:nth-child(6) { animation-delay: 0.6s; }
+        
+        .tab-content.active {
+            display: block; /* Show active tab */
+        }
 
-        .section-title { font-family: 'Bebas Neue', cursive; font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--accent-gold); border-bottom: 2px solid #111; display: inline-block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- WIDGET WRAPPERS --- */
-        .heatmap-wrapper, .news-wrapper, .intel-card, .chart-wrapper {
-            background: rgba(0, 0, 0, 0.85);
-            border: 1px solid var(--accent-gold);
+        /* --- WIDGET BOXES --- */
+        .widget-box {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid #222;
             border-radius: 12px;
             padding: 10px;
+            margin-bottom: 30px;
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1); 
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+            transition: 0.3s;
         }
-        .heatmap-wrapper { height: 800px; }
-        .news-wrapper { height: 600px; }
-        .chart-wrapper { height: 700px; } /* Big Chart */
-        
-        .heatmap-wrapper:hover, .news-wrapper:hover, .intel-card:hover, .chart-wrapper:hover {
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
-            border-color: #fff;
-        }
+        .widget-box:hover { border-color: var(--gold); box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); }
 
-        /* --- INTELLIGENCE HUB --- */
-        .intel-container { display: flex; gap: 20px; flex-wrap: wrap; }
-        .intel-card { flex: 1; min-width: 300px; height: 450px; }
+        .section-title { font-family: 'Bebas Neue'; font-size: 2rem; color: var(--gold); border-bottom: 1px solid #333; margin-bottom: 15px; padding-bottom: 5px; }
 
-        /* --- FUNDAMENTALS --- */
-        .fundamentals-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .fund-card { 
-            background: rgba(12, 12, 12, 0.95); 
-            border: 1px solid var(--border); 
-            border-top: 4px solid var(--accent-gold);
-            border-radius: 4px; 
-            padding: 1.5rem; 
-            flex: 1 1 300px; 
-            transition: all 0.3s ease; 
-        }
-        .fund-card:hover { 
-            transform: translateY(-8px); 
-            background: #111;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5), 0 0 15px rgba(255, 215, 0, 0.2);
-            border-top: 4px solid #fff;
-        }
-        .fund-card h3 { color: #ffffff; margin-bottom: 1rem; font-family: 'Bebas Neue', cursive; font-size: 2rem; }
-        table { width: 100%; border-collapse: collapse; }
-        td { padding: 0.8rem 0; border-bottom: 1px solid #1a1a1a; font-size: 1rem; }
-        .val { text-align: right; font-family: 'JetBrains Mono', monospace; font-weight: bold; color: #00ff88; }
+        /* --- SPECIFIC HEIGHTS --- */
+        .chart-h { height: 750px; }
+        .flow-h { height: 600px; }
+        .map-h { height: 800px; }
+        .news-h { height: 600px; }
+        .intel-h { height: 450px; }
 
-        /* --- MODULES --- */
-        .module { 
-            background: rgba(12, 12, 12, 0.95); 
-            border: 1px solid var(--border); 
-            margin-bottom: 1rem; 
-            border-radius: 8px; 
-            overflow: hidden; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .module:hover { transform: translateX(10px); box-shadow: -5px 5px 15px rgba(255, 215, 0, 0.1); border-color: #444; }
-        .module-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.3s; }
-        .module-header:hover { background: #1a1a1a; }
-        .module-header h3 { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; color: #ffffff; margin: 0; }
-        .module-content { padding: 0; display: none; background: #050505; border-top: 1px solid var(--border); }
+        /* --- GRID FOR INTEL PAGE --- */
+        .grid-2 { display: flex; gap: 20px; flex-wrap: wrap; }
+        .col { flex: 1; min-width: 300px; }
+
+        /* --- MODULES (ACADEMY) --- */
+        .module { background: var(--card-bg); border: 1px solid #222; margin-bottom: 15px; border-radius: 8px; overflow: hidden; }
+        .module-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #0e0e0e; }
+        .module-header h3 { font-family: 'Bebas Neue'; font-size: 1.5rem; margin: 0; color: #fff; }
+        .module-content { display: none; background: #000; border-top: 1px solid #222; }
         .module.active .module-content { display: block; }
-        .lesson-item { padding: 1.5rem; border-bottom: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; }
-        .lesson-item:last-child { border-bottom: none; }
-        .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; }
-        .lesson-item span:last-child { color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 5px 15px; border-radius: 4px; font-size: 0.8rem; transition: 0.3s; }
+        .lesson-item { padding: 15px 20px; border-bottom: 1px solid #111; display: flex; justify-content: space-between; }
+        .lesson-item a { color: #fff; text-decoration: none; width: 100%; display: flex; justify-content: space-between; font-weight: 600; font-family: 'Manrope'; }
         .lesson-item:hover { background: #111; }
-        .lesson-item:hover span:last-child { background: var(--accent-gold); color: #000; }
+        .tag { color: var(--gold); border: 1px solid var(--gold); padding: 2px 10px; border-radius: 4px; font-size: 0.8rem; }
 
         /* --- FOOTER --- */
-        footer { padding: 4rem 5%; text-align: center; background: #050505; border-top: 1px solid var(--border); margin-top: 4rem; position: relative; z-index: 10; }
-        .footer-logo { font-family: 'Bebas Neue'; color: var(--accent-gold); font-size: 2rem; margin-bottom: 1rem; }
-        .footer-text { color: #555; font-size: 0.8rem; }
+        footer { text-align: center; padding: 50px 0; color: #444; font-size: 0.8rem; border-top: 1px solid #111; margin-top: 50px; }
     </style>
 </head>
-
 <body>
 
     <div class="background-art"></div>
@@ -186,213 +179,109 @@
         <div class="logo-container">
             <a href="#" class="logo-text">HYPE CAPITAL</a>
         </div>
-        <div class="tv-ticker-container">
-            <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-                {
-                "symbols": [
-                    { "proName": "FOREXCOM:SPXUSD", "title": "S&P 500" },
-                    { "proName": "FOREXCOM:NSXUSD", "title": "NASDAQ 100" },
-                    { "proName": "AMEX:SPY", "title": "SPY" },
-                    { "proName": "NASDAQ:QQQ", "title": "QQQ" },
-                    { "proName": "AMEX:IWM", "title": "IWM" },
-                    { "proName": "BITSTAMP:BTCUSD", "title": "BTC/USD" },
-                    { "proName": "BITSTAMP:ETHUSD", "title": "ETH/USD" },
-                    { "proName": "BINANCE:SOLUSD", "title": "SOL/USD" }
-                ],
-                "showSymbolLogo": true,
-                "colorTheme": "dark",
-                "isTransparent": true,
-                "displayMode": "regular",
-                "locale": "en"
-                }
-                </script>
-            </div>
+        
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="openTab('warroom')">WAR ROOM</button>
+            <button class="tab-btn" onclick="openTab('intel')">INTEL</button>
+            <button class="tab-btn" onclick="openTab('academy')">ACADEMY</button>
+        </div>
+
+        <div class="tradingview-widget-container" style="height: 46px; border-bottom: 1px solid var(--gold);">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            { "symbols": [{"proName":"FOREXCOM:SPXUSD","title":"S&P 500"},{"proName":"NASDAQ:QQQ","title":"QQQ"},{"proName":"AMEX:IWM","title":"IWM"},{"proName":"BITSTAMP:BTCUSD","title":"BTC/USD"},{"proName":"BINANCE:SOLUSD","title":"SOL/USD"}], "colorTheme": "dark", "isTransparent": true, "displayMode": "regular", "locale": "en" }
+            </script>
         </div>
     </header>
 
-    <section id="strategies" style="margin-top: 20px;">
-        <h2 class="section-title">TRADING STRATEGIES</h2>
-        <div class="course-modules">
-            <div class="module">
-                <div class="module-header" onclick="toggleModule(this)">
-                    <h3>MODULE 1: TECHNICALS</h3>
-                    <span style="color: var(--accent-gold);">▼</span>
-                </div>
-                <div class="module-content">
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank"><span>🎥 INTRODUCTION</span><span>WATCH</span></a></div>
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank"><span>🎥 MARKET STRUCTURE</span><span>WATCH</span></a></div>
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=46sRElHMfww" target="_blank"><span>🎥 TRENDLINES</span><span>WATCH</span></a></div>
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank"><span>🎥 FIBONACCI TECHNIQUES</span><span>WATCH</span></a></div>
-                </div>
-            </div>
-            <div class="module">
-                <div class="module-header" onclick="toggleModule(this)">
-                    <h3>MODULE 2: ELLIOT WAVE</h3>
-                    <span style="color: var(--accent-gold);">▼</span>
-                </div>
-                <div class="module-content">
-                    <div class="lesson-item"><a href="https://www.youtube.com/watch?v=9gM2V6n5b8M" target="_blank"><span>🎥 WAVE THEORY INTRO</span><span>WATCH</span></a></div>
-                </div>
-            </div>
-            <div class="module">
-                <div class="module-header" onclick="toggleModule(this)">
-                    <h3>MODULE 3: PASSIVE INVESTING</h3>
-                    <span style="color: var(--accent-gold);">▼</span>
-                </div>
-                <div class="module-content">
-                    <div class="lesson-item"><a href="#"><span>🎥 COMING SOON</span><span>LOCKED</span></a></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="charting">
+    <div id="warroom" class="tab-content active">
         <h2 class="section-title">WAR ROOM CHART</h2>
-        <div class="chart-wrapper">
-            <div class="tradingview-widget-container" style="height:100%;width:100%">
-                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                {
-                  "autosize": true,
-                  "symbol": "AMEX:SPY",
-                  "interval": "D",
-                  "timezone": "Etc/UTC",
-                  "theme": "dark",
-                  "style": "1",
-                  "locale": "en",
-                  "enable_publishing": false,
-                  "backgroundColor": "rgba(0, 0, 0, 0)",
-                  "gridColor": "rgba(66, 66, 66, 0.06)",
-                  "withdateranges": true,
-                  "hide_side_toolbar": false,
-                  "allow_symbol_change": true,
-                  "calendar": false,
-                  "support_host": "https://www.tradingview.com"
-                }
-                </script>
-            </div>
+        <div class="widget-box chart-h">
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "AMEX:SPY", "interval": "D", "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": false, "allow_symbol_change": true, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
         </div>
-    </section>
 
-    <section id="intelligence">
+        <h2 class="section-title">CAPITAL FLOW TRACKER</h2>
+        <div class="widget-box flow-h">
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>{ "colorTheme": "dark", "dateRange": "12M", "exchange": "US", "showChart": true, "locale": "en", "largeChartUrl": "", "isTransparent": true, "showSymbolLogo": true, "width": "100%", "height": "100%" }</script></div>
+        </div>
+    </div>
+
+    <div id="intel" class="tab-content">
         <h2 class="section-title">INTELLIGENCE HUB</h2>
-        <div class="intel-container">
-            <div class="intel-card">
-                <div class="tradingview-widget-container" style="height:100%;width:100%">
-                    <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
-                    {
-                    "interval": "1D",
-                    "width": "100%",
-                    "isTransparent": true,
-                    "height": "100%",
-                    "symbol": "AMEX:SPY",
-                    "showIntervalTabs": true,
-                    "displayMode": "single",
-                    "locale": "en",
-                    "colorTheme": "dark"
-                    }
-                    </script>
-                </div>
+        <div class="grid-2">
+            <div class="widget-box intel-h col">
+                <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>{ "interval": "1D", "width": "100%", "isTransparent": true, "height": "100%", "symbol": "AMEX:SPY", "showIntervalTabs": true, "displayMode": "single", "locale": "en", "colorTheme": "dark" }</script></div>
             </div>
-            <div class="intel-card">
-                <div class="tradingview-widget-container" style="height:100%;width:100%">
-                    <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
-                    {
-                    "colorTheme": "dark",
-                    "isTransparent": true,
-                    "width": "100%",
-                    "height": "100%",
-                    "locale": "en",
-                    "importanceFilter": "0,1",
-                    "currencyFilter": "USD"
-                    }
-                    </script>
-                </div>
+            <div class="widget-box intel-h col">
+                <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>{ "colorTheme": "dark", "isTransparent": true, "width": "100%", "height": "100%", "locale": "en", "importanceFilter": "0,1", "currencyFilter": "USD" }</script></div>
             </div>
         </div>
-    </section>
 
-    <section id="market-pulse">
-        <h2 class="section-title">SECTOR ETF HEATMAP</h2>
-        <div class="heatmap-wrapper">
-            <div class="tradingview-widget-container" style="height:100%;width:100%">
-                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-etf-heatmap.js" async>
-                {
-                  "dataSource": "AllUSEtf",
-                  "grouping": "sector",
-                  "blockSize": "aum",
-                  "blockColor": "change",
-                  "locale": "en",
-                  "symbolUrl": "",
-                  "colorTheme": "dark",
-                  "hasTopBar": false,
-                  "isDatasetEnabled": false,
-                  "isTransparent": true,
-                  "width": "100%",
-                  "height": "100%"
-                }
-                </script>
+        <h2 class="section-title">SECTOR HEATMAP</h2>
+        <div class="widget-box map-h">
+             <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-etf-heatmap.js" async>{ "dataSource": "AllUSEtf", "grouping": "sector", "blockSize": "aum", "blockColor": "change", "locale": "en", "symbolUrl": "", "colorTheme": "dark", "hasTopBar": false, "isDatasetEnabled": false, "isTransparent": true, "width": "100%", "height": "100%" }</script></div>
+        </div>
+
+        <h2 class="section-title">MARKET WIRE</h2>
+        <div class="widget-box news-h">
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>{ "feedMode": "market", "market": "stock", "isTransparent": true, "displayMode": "regular", "width": "100%", "height": "100%", "colorTheme": "dark", "locale": "en" }</script></div>
+        </div>
+    </div>
+
+    <div id="academy" class="tab-content">
+        <h2 class="section-title">TRADING STRATEGIES</h2>
+        
+        <div class="module">
+            <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 1: TECHNICALS</h3><span style="color:var(--gold)">▼</span></div>
+            <div class="module-content">
+                <div class="lesson-item"><a href="https://www.youtube.com/watch?v=7DHnQQjPo1I" target="_blank"><span>🎥 INTRODUCTION</span><span class="tag">WATCH</span></a></div>
+                <div class="lesson-item"><a href="https://www.youtube.com/watch?v=wSqNXzkGoa8" target="_blank"><span>🎥 MARKET STRUCTURE</span><span class="tag">WATCH</span></a></div>
+                <div class="lesson-item"><a href="https://www.youtube.com/watch?v=46sRElHMfww" target="_blank"><span>🎥 TRENDLINES</span><span class="tag">WATCH</span></a></div>
+                <div class="lesson-item"><a href="https://www.youtube.com/watch?v=6z8WYszwDgQ" target="_blank"><span>🎥 FIBONACCI</span><span class="tag">WATCH</span></a></div>
             </div>
         </div>
-    </section>
 
-    <section id="news-wire">
-        <h2 class="section-title">MARKET EVENTS WIRE</h2>
-        <div class="news-wrapper">
-            <div class="tradingview-widget-container" style="height:100%;width:100%">
-                <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-                {
-                  "feedMode": "market",
-                  "market": "stock",
-                  "isTransparent": true,
-                  "displayMode": "regular",
-                  "width": "100%",
-                  "height": "100%",
-                  "colorTheme": "dark",
-                  "locale": "en"
-                }
-                </script>
+        <div class="module">
+            <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 2: ELLIOT WAVE</h3><span style="color:var(--gold)">▼</span></div>
+            <div class="module-content">
+                <div class="lesson-item"><a href="https://www.youtube.com/watch?v=9gM2V6n5b8M" target="_blank"><span>🎥 WAVE THEORY INTRO</span><span class="tag">WATCH</span></a></div>
             </div>
         </div>
-    </section>
 
-    <section id="report">
-        <h2 class="section-title">MARKET REPORT</h2>
-        <div class="fundamentals-container">
-            <div class="fund-card"><h3>SPY</h3><table><tr><td>NAV</td><td class="val">$681.29</td></tr></table></div>
-            <div class="fund-card"><h3>NVDA</h3><table><tr><td>PE</td><td class="val">37.06x</td></tr></table></div>
-            <div class="fund-card"><h3>AVGO</h3><table><tr><td>YIELD</td><td class="val">1.41%</td></tr></table></div>
-            <div class="fund-card"><h3>GOOGL</h3><table><tr><td>CLOUD</td><td class="val">+48%</td></tr></table></div>
-            <div class="fund-card"><h3>AAPL</h3><table><tr><td>REV</td><td class="val">$143.8B</td></tr></table></div>
-            <div class="fund-card"><h3>MSFT</h3><table><tr><td>AZURE</td><td class="val">+26%</td></tr></table></div>
-            <div class="fund-card"><h3>AMD</h3><table><tr><td>DC</td><td class="val">+60%</td></tr></table></div>
-            <div class="fund-card"><h3>TSM</h3><table><tr><td>NODE</td><td class="val">2nm</td></tr></table></div>
-            <div class="fund-card"><h3>MU</h3><table><tr><td>HBM</td><td class="val">SOLD OUT</td></tr></table></div>
+        <div class="module">
+            <div class="module-header" onclick="toggleModule(this)"><h3>MODULE 3: PASSIVE INVESTING</h3><span style="color:var(--gold)">▼</span></div>
+            <div class="module-content">
+                <div class="lesson-item"><a href="#"><span>🎥 COMING SOON</span><span class="tag">LOCKED</span></a></div>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <div class="footer-logo">HYPE CAPITAL</div>
-        <p class="footer-text">© 2026 HIGH YIELD PERFORMANCE EQUITY. TRADING INVOLVES RISK.</p>
-    </footer>
+    <footer>© 2026 HYPE CAPITAL. TRADING INVOLVES RISK.</footer>
 
     <script>
-        function toggleModule(header) { header.parentElement.classList.toggle('active'); }
+        function openTab(tabName) {
+            // 1. Hide all tabs
+            var contents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+            // 2. Deactivate all buttons
+            var btns = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+            }
+            // 3. Show specific tab and activate button
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+
+        function toggleModule(header) { 
+            header.parentElement.classList.toggle('active'); 
+        }
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer>
-      new Crate({
-        server: '1452115058015600672',
-        channel: '1452444153073111080',
-        shard: 'https://e.widgetbot.io',
-        color: '#FFD700',
-        location: ['bottom', 'right']
-      })
+      new Crate({ server: '1452115058015600672', channel: '1452444153073111080', shard: 'https://e.widgetbot.io', color: '#FFD700' })
     </script>
 
 </body>
