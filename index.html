@@ -161,6 +161,93 @@
         .lesson-item:hover { background: #111; }
         .tag { color: var(--gold); border: 1px solid var(--gold); padding: 1px 8px; border-radius: 3px; font-size: 0.7rem; }
 
+        /* --- NEW COACHING SECTION STYLES --- */
+        .coaching-box {
+            background: linear-gradient(145deg, #0a0a0a, #141414);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: 40px 20px;
+            margin-top: 50px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Optional shine effect on the box */
+        .coaching-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.5;
+        }
+
+        .coaching-title {
+            font-family: 'Bebas Neue';
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .coaching-desc {
+            font-family: 'Manrope';
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .price-display {
+            font-family: 'Bebas Neue';
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 25px;
+            line-height: 1;
+        }
+
+        .price-sub {
+            font-size: 1.2rem;
+            color: #888;
+            font-family: 'Manrope';
+            vertical-align: middle;
+        }
+
+        .book-btn {
+            display: inline-block;
+            background: var(--gold);
+            color: #000;
+            font-family: 'Bebas Neue';
+            font-size: 1.4rem;
+            padding: 16px 50px;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .book-btn:hover {
+            background: transparent;
+            color: var(--gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .phone-text {
+            margin-top: 20px;
+            font-family: 'Manrope';
+            font-size: 0.9rem;
+            color: #555;
+            letter-spacing: 0.5px;
+        }
+        
+        .phone-text strong { color: #888; }
+
         footer { text-align: center; padding: 40px 0; color: #333; font-size: 0.75rem; border-top: 1px solid #111; margin-top: 40px; }
 
         @media (max-width: 768px) {
@@ -169,6 +256,11 @@
             .nav-tabs { padding: 5px 0; }
             .tab-btn { font-size: 1rem; padding: 10px; width: 50%; max-width: none; }
             .chart-h, .flow-h, .map-h { height: 400px; }
+            
+            /* Mobile adjustments for coaching */
+            .coaching-title { font-size: 2rem; }
+            .price-display { font-size: 2.8rem; }
+            .book-btn { width: 100%; padding: 15px 0; }
         }
     </style>
 </head>
@@ -288,7 +380,27 @@
                 <div class="lesson-item"><a href="https://www.youtube.com/watch?v=HGsz5Hv2QMY" target="_blank"><span>🎥 Shiller Cape Ratio Explained!</span><span class="tag">WATCH</span></a></div>
             </div>
         </div>
-    </div>
+
+        <div class="coaching-box">
+            <h2 class="coaching-title">ELITE 1-ON-1 MENTORSHIP</h2>
+            <p class="coaching-desc">
+                Stop guessing and start executing. Get personalized training on technical analysis, 
+                Elliott Wave theory, and risk management strategies directly from the source.
+            </p>
+            
+            <div class="price-display">
+                $100 <span class="price-sub">/ HOUR</span>
+            </div>
+        
+            <a href="sms:+18656617009?body=Hi%20Brent%2C%20I'm%20interested%20in%20booking%20a%201-on-1%20coaching%20session." class="book-btn">
+                TEXT TO BOOK
+            </a>
+            
+            <div class="phone-text">
+                OR TEXT: <strong>(865) 661-7009</strong>
+            </div>
+        </div>
+        </div>
 
     <footer>© 2026 HYPE CAPITAL. TRADING INVOLVES RISK.</footer>
 
