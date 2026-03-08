@@ -175,9 +175,29 @@
         /* --- ACTIVE SETUPS PANEL --- */
         .setup-panel { background: #0a0a0a; border: 1px solid #333; border-radius: 4px; padding: 15px; margin-bottom: 25px; border-left: 4px solid var(--gold); }
         .setup-header { font-family: 'Bebas Neue'; font-size: 1.4rem; color: #fff; letter-spacing: 1px; margin-bottom: 5px; }
-        .setup-details { display: flex; gap: 20px; font-size: 0.9rem; color: #aaa; flex-wrap: wrap;}
+        .setup-details { display: flex; gap: 20px; font-size: 0.9rem; color: #aaa; flex-wrap: wrap; align-items: center;}
         .setup-details span strong { color: #fff; }
-        .setup-badge { background: rgba(255, 215, 0, 0.1); color: var(--gold); padding: 2px 8px; border-radius: 3px; font-size: 0.8rem; border: 1px solid var(--gold); }
+        
+        /* Updated Clickable Badge */
+        .setup-badge-link { 
+            background: rgba(255, 215, 0, 0.1); 
+            color: var(--gold); 
+            padding: 6px 12px; 
+            border-radius: 4px; 
+            font-size: 0.85rem; 
+            font-weight: bold;
+            border: 1px solid var(--gold); 
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+            display: inline-block;
+        }
+        .setup-badge-link:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            transform: scale(1.02);
+        }
 
         /* --- MODULES (ACADEMY) --- */
         .module { background: var(--card-bg); border: 1px solid #222; margin-bottom: 15px; border-radius: 8px; overflow: hidden; }
@@ -287,13 +307,33 @@
             <div class="setup-details">
                 <span><strong>STRATEGY:</strong> Long-Dated Call Accumulation (LEAPS)</span>
                 <span><strong>TARGET:</strong> 2027 Expirations / $11.00 Strike Focus</span>
-                <span class="setup-badge">ACTIVE MONITORING</span>
+                <a href="sms:+18656617009?body=Hi%20Brent%2C%20I'm%20interested%20in%20learning%20more%20about%20your%20active%20LEAPS%20strategy%201-on-1." class="setup-badge-link">
+                    ACTIVE MONITORING: LEARN THIS STRATEGY 1-ON-1
+                </a>
             </div>
         </div>
 
         <h2 class="section-title">WAR ROOM CHART</h2>
         <div class="widget-box chart-h">
-            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ "autosize": true, "symbol": "AMEX:SPY", "interval": "D", "timezone": "Etc/UTC", "theme": "dark", "style": "1", "locale": "en", "enable_publishing": false, "backgroundColor": "rgba(0, 0, 0, 0)", "gridColor": "rgba(66, 66, 66, 0.06)", "hide_side_toolbar": false, "allow_symbol_change": true, "calendar": false, "support_host": "https://www.tradingview.com" }</script></div>
+            <div class="tradingview-widget-container" style="height:100%;width:100%"><div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>{ 
+                "autosize": true, 
+                "symbol": "AMEX:SPY", 
+                "interval": "W", 
+                "timezone": "Etc/UTC", 
+                "theme": "dark", 
+                "style": "1", 
+                "locale": "en", 
+                "enable_publishing": false, 
+                "backgroundColor": "rgba(0, 0, 0, 0)", 
+                "gridColor": "rgba(66, 66, 66, 0.06)", 
+                "hide_side_toolbar": false, 
+                "allow_symbol_change": true, 
+                "studies": [
+                    "RSI@tv-basicstudies"
+                ],
+                "calendar": false, 
+                "support_host": "https://www.tradingview.com" 
+            }</script></div>
         </div>
 
         <div class="grid-2">
