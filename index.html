@@ -178,7 +178,6 @@
         .setup-details { display: flex; gap: 20px; font-size: 0.9rem; color: #aaa; flex-wrap: wrap; align-items: center;}
         .setup-details span strong { color: #fff; }
         
-        /* Updated Clickable Badge */
         .setup-badge-link { 
             background: rgba(255, 215, 0, 0.1); 
             color: var(--gold); 
@@ -416,7 +415,7 @@
                 <div class="table-container">
                     <table class="custom-table">
                         <thead>
-                            <tr><th colspan="4">🏛️ CONGRESSIONAL BUYS (LAST 30 DAYS)</th></tr>
+                            <tr><th colspan="4">🏛️ CONGRESSIONAL BUYS (LATEST DISCLOSURES)</th></tr>
                             <tr>
                                 <th style="color:#888; font-size:0.9rem;">TICKER</th>
                                 <th style="color:#888; font-size:0.9rem;">REP.</th>
@@ -425,16 +424,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="ticker-col">AB</td><td>Nancy Pelosi</td><td class="green-text">$1M - $5M</td><td>01/16</td></tr>
-                            <tr><td class="ticker-col">NVDA</td><td>Nancy Pelosi</td><td class="green-text">$500K (Calls)</td><td>01/16</td></tr>
-                            <tr><td class="ticker-col">TSM</td><td>Cleo Fields</td><td class="green-text">$15K - $50K</td><td>01/08</td></tr>
-                            <tr><td class="ticker-col">TEM</td><td>Nancy Pelosi</td><td class="green-text">$100K (Calls)</td><td>01/16</td></tr>
-                            <tr><td class="ticker-col">VVV</td><td>Michael McCaul</td><td class="green-text">$15K - $50K</td><td>01/24</td></tr>
+                            <tr><td class="ticker-col">AB</td><td>Nancy Pelosi</td><td class="green-text">$1M - $5M Buy</td><td>01/16</td></tr>
+                            <tr><td class="ticker-col">NVDA</td><td>Nancy Pelosi</td><td class="green-text">Exercised Calls</td><td>01/16</td></tr>
+                            <tr><td class="ticker-col">VST</td><td>Nancy Pelosi</td><td class="green-text">Exercised Calls</td><td>01/16</td></tr>
+                            <tr><td class="ticker-col">TSM</td><td>Cleo Fields</td><td class="green-text">$15K - $50K Buy</td><td>01/08</td></tr>
                             <tr><td class="ticker-col">GOOGL</td><td>Cleo Fields</td><td class="green-text">$15K Buy</td><td>01/12</td></tr>
-                            <tr><td class="ticker-col">VST</td><td>Nancy Pelosi</td><td class="green-text">$250K (Calls)</td><td>01/16</td></tr>
-                            <tr><td class="ticker-col">MSA</td><td>Michael McCaul</td><td class="green-text">$50K Buy</td><td>01/24</td></tr>
-                            <tr><td class="ticker-col">LPX</td><td>Michael McCaul</td><td class="green-text">$100K Buy</td><td>01/24</td></tr>
-                            <tr><td class="ticker-col">AMZN</td><td>Mark Green</td><td class="green-text">$100K Buy</td><td>01/28</td></tr>
+                            <tr><td class="ticker-col">AMZN</td><td>Nancy Pelosi</td><td class="green-text">Exercised Calls</td><td>01/16</td></tr>
+                            <tr><td class="ticker-col">TEM</td><td>Nancy Pelosi</td><td class="green-text">Exercised Calls</td><td>01/16</td></tr>
+                            <tr><td class="ticker-col">FIS</td><td>Michael McCaul</td><td style="color:var(--danger); font-weight:bold;">$250K Sell</td><td>02/18</td></tr>
+                            <tr><td class="ticker-col">AAPL</td><td>Michael McCaul</td><td style="color:var(--danger); font-weight:bold;">$165K Sell</td><td>02/18</td></tr>
+                            <tr><td class="ticker-col">ADBE</td><td>Michael McCaul</td><td style="color:var(--danger); font-weight:bold;">$100K Sell</td><td>02/18</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -444,7 +443,7 @@
                 <div class="table-container">
                     <table class="custom-table">
                         <thead>
-                            <tr><th colspan="4">🐳 INSTITUTIONAL (FILED FEB '26)</th></tr>
+                            <tr><th colspan="4">🐳 INSTITUTIONAL (Q4 2025 13F DATA)</th></tr>
                             <tr>
                                 <th style="color:#888; font-size:0.9rem;">TICKER</th>
                                 <th style="color:#888; font-size:0.9rem;">FUND / GURU</th>
@@ -453,16 +452,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="ticker-col">NYT</td><td>Berkshire (Buffett)</td><td class="green-text">New Stake</td><td>NEW</td></tr>
-                            <tr><td class="ticker-col">LULU</td><td>Scion (Burry)</td><td class="green-text">Top Holding</td><td>NEW</td></tr>
-                            <tr><td class="ticker-col">UBER</td><td>Pershing (Ackman)</td><td class="green-text">Big Add</td><td>ADD</td></tr>
-                            <tr><td class="ticker-col">DPZ</td><td>Berkshire (Buffett)</td><td class="green-text">6th Buy in Row</td><td>ADD</td></tr>
-                            <tr><td class="ticker-col">BE</td><td>Druckenmiller</td><td class="green-text">$64M Bet</td><td>NEW</td></tr>
-                            <tr><td class="ticker-col">MU</td><td>Appaloosa (Tepper)</td><td class="green-text">Doubled Stake</td><td>ADD</td></tr>
-                            <tr><td class="ticker-col">PLTR</td><td>Scion (Burry)</td><td style="color:var(--danger)">PUTS (Short)</td><td>BEAR</td></tr>
-                            <tr><td class="ticker-col">NVDA</td><td>Bridgewater (Dalio)</td><td class="green-text">$695M Buy</td><td>ADD</td></tr>
-                            <tr><td class="ticker-col">MOH</td><td>Scion (Burry)</td><td class="green-text">$24M Stake</td><td>NEW</td></tr>
-                            <tr><td class="ticker-col">META</td><td>Pershing (Ackman)</td><td class="green-text">Re-Entry</td><td>ADD</td></tr>
+                            <tr><td class="ticker-col">BABA</td><td>Appaloosa (Tepper)</td><td class="green-text">+18% Add</td><td>ADD</td></tr>
+                            <tr><td class="ticker-col">VST</td><td>Appaloosa (Tepper)</td><td class="green-text">+113% Stake</td><td>ADD</td></tr>
+                            <tr><td class="ticker-col">STZ</td><td>Berkshire (Buffett)</td><td class="green-text">New Stake</td><td>NEW</td></tr>
+                            <tr><td class="ticker-col">BAC</td><td>Berkshire (Buffett)</td><td style="color:var(--danger); font-weight:bold;">Trimmed 15%</td><td>REDUCE</td></tr>
+                            <tr><td class="ticker-col">META</td><td>Pershing (Ackman)</td><td class="green-text">New Stake</td><td>NEW</td></tr>
+                            <tr><td class="ticker-col">GOOGL</td><td>Scion (Burry)</td><td style="color:var(--danger); font-weight:bold;">Slashed 55%</td><td>REDUCE</td></tr>
+                            <tr><td class="ticker-col">UBER</td><td>Scion (Burry)</td><td style="color:var(--danger); font-weight:bold;">Exited</td><td>SELL</td></tr>
+                            <tr><td class="ticker-col">NVDA</td><td>Bridgewater (Dalio)</td><td class="green-text">+54% Stake</td><td>ADD</td></tr>
+                            <tr><td class="ticker-col">ORCL</td><td>Bridgewater (Dalio)</td><td class="green-text">+361% Stake</td><td>ADD</td></tr>
+                            <tr><td class="ticker-col">MU</td><td>Bridgewater (Dalio)</td><td class="green-text">Massive Add</td><td>ADD</td></tr>
                         </tbody>
                     </table>
                 </div>
